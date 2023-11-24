@@ -28,17 +28,34 @@ class FilterEntity extends Entity
                     'type' => 'varchar',
                     'limit' => 245,
                 ], 
-                'group' => [
+                'select_object' => [
                     'type' => 'varchar',
                     'limit' => 245,
                 ],
-                'link' => [
-                    'type' => 'varchar',
-                    'limit' => 245,
+                'start_date' => [
+                    'type' => 'datetime',
+                    'default' => 'NOW()',
+                ],
+                'end_date' => [
+                    'type' => 'datetime',
+                    'default' => 'NOW()',
+                ],
+                'tags' => [
+                    'type' => 'text',
+                ],
+                'creator' => [
+                    'type' => 'text',
+                ],
+                'permission' => [
+                    'type' => 'text',
                 ],
                 'created_at' => [
                     'type' => 'datetime',
                     'default' => 'NOW()',
+                ],
+                'shortcut_id' => [
+                    'type' => 'int', 
+                    'option' => 'unsigned',
                 ],
                 'created_by' => [
                     'type' => 'int',
@@ -66,12 +83,6 @@ class FilterEntity extends Entity
         if (!isset($data['name']) || !$data['name'] || !$data)
         {
             $this->error = 'Name is required! ';
-            return false;
-        }
-
-        if (!isset($data['link']) || !$data['link'] || !$data)
-        {
-            $this->error = 'Link is required!';
             return false;
         }
 

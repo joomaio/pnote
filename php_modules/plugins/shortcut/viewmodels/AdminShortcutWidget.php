@@ -38,21 +38,24 @@ class AdminShortcutWidget extends ViewModel
                 'default' => '',
                 'showLabel' => false,
                 'formClass' => 'form-control',
-                'placeholder' => 'Name'
+                'placeholder' => 'Name',
+                'required' => 'required',
             ],
             'link_shortcut' => [
                 'text',
                 'default' => '',
                 'showLabel' => false,
                 'formClass' => 'form-control',
-                'placeholder' => 'Link'
+                'placeholder' => 'Link',
+                'required' => 'required',
             ],
             'group_shortcut' => [
                 'text',
                 'default' => '',
                 'showLabel' => false,
                 'formClass' => 'form-control',
-                'placeholder' => 'Group'
+                'placeholder' => 'Group',
+                'required' => 'required',
             ],
         ];
     }

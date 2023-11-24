@@ -8,24 +8,74 @@ class filter extends ControllerMVVM
 {
     public function list()
     {
-        $list = $this->ShortcutModel->getShortcut();
+        $this->app->set('page', 'backend');
+        $this->app->set('format', 'html');
+        $this->app->set('layout', 'filter.list');
+    }
 
-        $this->app->set('format', 'json');
-        $this->set('list', $list);
-        return ;
+    public function detail()
+    {
+        $this->app->set('page', 'backend');
+        $this->app->set('format', 'html');
+        $this->app->set('layout', 'filter.form');
+    }
+
+    public function add()
+    {
+        $data = [
+            'name' => $this->request->post->get('name', '', 'string'),
+            'description' => $this->request->post->get('description', '', 'string'),
+            'parent_id' => $this->request->post->get('parent_id', 0, 'int'),
+        ];
+
+        $try = $this->TagModel->add($data);
+
+        $message = $try ? 'Create Successfully!' : 'Error: '. $this->TagModel->getError();
+
+        $this->session->set('flashMsg', $message);
+        return $this->app->redirect(
+            $this->router->url('tags')
+        );
+    }
+
+    public function update()
+    {
+        $id = $this->validateID(); 
+
+        if(is_numeric($id) && $id)
+        {
+            $data = [
+                'name' => $this->request->post->get('name', '', 'string'),
+                'description' => $this->request->post->get('description', '', 'string'),
+                'parent_id' => $this->request->post->get('parent_id', 0, 'int'),
+                'id' => $id,
+            ];
+        
+            $try = $this->TagModel->update($data);
+            $message = $try ? 'Update Successfully!' : 'Error: '. $this->TagModel->getError();
+            
+            $this->session->set('flashMsg', $message);
+            return $this->app->redirect(
+                $this->router->url('tags')
+            );
+        }
+
+        $this->session->set('flashMsg', 'Error: Invalid Task!');
+        return $this->app->redirect(
+            $this->router->url('tags')
+        );
     }
 
     public function delete()
     {
         $ids = $this->validateID();
-
         $count = 0;
         if( is_array($ids))
         {
             foreach($ids as $id)
             {
                 //Delete file in source
-                if( $this->ShortcutModel->remove( $id ) )
+                if( $this->TagModel->remove( $id ) )
                 {
                     $count++;
                 }
@@ -33,16 +83,17 @@ class filter extends ControllerMVVM
         }
         elseif( is_numeric($ids) )
         {
-            if( $this->ShortcutModel->remove($ids ) )
+            if( $this->TagModel->remove($ids ) )
             {
                 $count++;
             }
-        }
+        }  
+        
 
-        $this->app->set('format', 'json');
-        $this->set('status', 'done');
-        $this->set('message', $count.' deleted record(s)');
-        return ;
+        $this->session->set('flashMsg', $count.' deleted record(s)');
+        return $this->app->redirect(
+            $this->router->url('tags'), 
+        );
     }
 
     public function validateID()
@@ -55,58 +106,12 @@ class filter extends ControllerMVVM
             $ids = $this->request->post->get('ids', [], 'array');
             if(count($ids)) return $ids;
 
-            $this->session->set('flashMsg', 'Invalid note');
+            $this->session->set('flashMsg', 'Invalid Tag');
             return $this->app->redirect(
-                $this->router->url('my-notes'),
+                $this->router->url('tags'),
             );
         }
 
         return $id;
-    }
-
-    public function add()
-    {
-        $try = $this->ShortcutModel->add([
-            'name' => $this->request->post->get('name_shortcut', '', 'string'),
-            'link' => $this->request->post->get('link_shortcut', '', 'string'),
-            'group' => $this->request->post->get('group_shortcut', '', 'string'),
-            'user_id' => $this->user->get('id'),
-            'created_at' => date('Y-m-d H:i:s'),
-            'created_by' => $this->user->get('id'),
-            'modified_at' => date('Y-m-d H:i:s'),
-            'modified_by' => $this->user->get('id'),
-        ]);
-        
-        $status = $try ? 'done' : 'failed';
-        $msg = $try ? 'Create Done' : 'Error: '. $this->ShortcutModel->getError();
-
-        $this->app->set('format', 'json');
-        $this->set('status', $status);
-        $this->set('message', $msg);
-        return ;
-    }
-
-    public function update()
-    {
-        $id = $this->validateID();
-        $try = $this->ShortcutModel->update([
-            'name' => $this->request->post->get('name_shortcut', '', 'string'),
-            'link' => $this->request->post->get('link_shortcut', '', 'string'),
-            'group' => $this->request->post->get('group_shortcut', '', 'string'),
-            'user_id' => $this->user->get('id'),
-            'id' => $id,
-            'created_at' => date('Y-m-d H:i:s'),
-            'created_by' => $this->user->get('id'),
-            'modified_at' => date('Y-m-d H:i:s'),
-            'modified_by' => $this->user->get('id'),
-        ]);
-        
-        $status = $try ? 'done' : 'failed';
-        $msg = $try ? 'Update Done' : 'Error: '. $this->ShortcutModel->getError();
-        
-        $this->app->set('format', 'json');
-        $this->set('status', $status);
-        $this->set('message', $msg);
-        return ;
     }
 }

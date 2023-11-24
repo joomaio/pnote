@@ -8,16 +8,6 @@ class FilterModel extends Base
 { 
     use ErrorString; 
 
-    public function replaceLink($link, $encode = true)
-    {
-        $replace = $encode ? '_sdm_app_domain_' : $this->router->url();
-        $search = $encode ? $this->router->url() : '_sdm_app_domain_';
-        
-        $link = str_replace($search, $replace, $link);
-
-        return $link;
-    }
-
     public function remove($id)
     {
         if (!$id)
@@ -25,26 +15,41 @@ class FilterModel extends Base
             return false;
         }
 
-        $try = $this->ShortcutEntity->remove($id);
+        $find = $this->FilterEntitty->findByPK($id);
+        if (!$find)
+        {
+            $this->error = 'Invalid Filter';
+            return false;
+        }
+
+        $try = $this->FilterEntity->remove($id);
+        if ($try)
+        {
+            // remove Shortcut
+            if ($find['shortcut_id'])
+            {
+                $this->ShortcutModel->remove($find['shortcut_id']);
+            }
+        }
+
         return $try;
     }
     
     public function add($data)
     {
-        $data['link'] = isset($data['link']) ? $this->replaceLink($data['link']) : '';
-        $data = $this->ShortcutEntity->bind($data);
+        $data = $this->FilterEntity->bind($data);
 
         if (!$data || !isset($data['readyNew']) || !$data['readyNew'])
         {
-            $this->error = $this->ShortcutEntity->getError();
+            $this->error = $this->FilterEntity->getError();
             return false;
         }
 
-        $newId =  $this->ShortcutEntity->add($data);
+        $newId =  $this->FilterEntity->add($data);
 
         if (!$newId)
         {
-            $this->error = $this->ShortcutEntity->getError();
+            $this->error = $this->FilterEntity->getError();
             return false;
         }
 
@@ -53,67 +58,21 @@ class FilterModel extends Base
 
     public function update($data)
     {
-        $data = $this->ShortcutEntity->bind($data);
         $data['link'] = isset($data['link']) ? $this->replaceLink($data['link']) : '';
 
         if (!$data || !isset($data['readyUpdate']) || !$data['readyUpdate'])
         {
-            $this->error = $this->ShortcutEntity->getError();
+            $this->error = $this->FilterEntity->getError();
             return false;
         }
 
-        $try = $this->ShortcutEntity->update($data);
+        $try = $this->FilterEntity->update($data);
         if (!$try)
         {
-            $this->error = $this->ShortcutEntity->getError();
+            $this->error = $this->FilterEntity->getError();
             return false;
         }
 
         return $try;
-    }
-
-    public function getShortcut()
-    {
-        $list = $this->ShortcutEntity->list(0, 0,['user_id' => $this->user->get('id')]);
-        $shortcuts = [];
-        $groups = [];
-        if ($list)
-        {
-            $tmp = [];
-            foreach($list as $item)
-            {
-                $item['link'] = $this->replaceLink($item['link'], false);
-                if ($item['group'])
-                {
-                    if (isset($groups[$item['group']]))
-                    {
-                        $groups[$item['group']][] = $item;
-                    }
-                    else
-                    {
-                        $groups[$item['group']] = [$item];
-                    }
-                }
-                else
-                {
-                    $tmp[] = $item;
-                }
-            }
-
-            $shortcuts[] = [
-                'group' => '',
-                'childs' => $tmp,
-            ];
-
-            foreach($groups as $key => $value)
-            {
-                $shortcuts[] = [
-                    'group' => $key,
-                    'childs' => $value
-                ];
-            }
-        }
-
-        return $shortcuts;
     }
 }
