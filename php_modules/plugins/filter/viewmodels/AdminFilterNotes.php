@@ -36,18 +36,47 @@ class AdminFilterNotes extends ViewModel
         $author   = $filter->getField('author')->value;
         $search = trim($filter->getField('search')->value);
 
+        $where = [];
         if ($filter_id)
         {
             $filter = $this->FilterModel->getDetail($filter_id);
             if ($filter)
             {
-                $where = [];
+                $tmp_tags = [];
+                foreach($filter['tags'] as $tag)
+                {
+                    $tmp_tags[] = 'tags LIKE "%('. $tag .')%"';
+                }
+                if ($tmp_tags)
+                {
+                    $where[] = '('. implode(' OR ', $tmp_tags) .')';
+                }
+
+                $creator = [];
+                foreach($filter['creator'] as $user)
+                {
+                    $creator[] = 'created_by LIKE '. $user;
+                }
+                if ($creator)
+                {
+                    $where[] = '('. implode(' OR ', $creator) .')';
+                }
+
+                if ($filter['start_date'])
+                {
+                    $where[] = 'created_at >= "'. $filter['start_date'].'"';
+                }
+
+                if ($filter['end_date'])
+                {
+                    $where[] = 'created_at <= "'. $filter['end_date'].'"';
+                }
             }
         }
+
         $page = $this->state('page', 1, 'int', 'get', 'filter_'. $filter_id.'.page');
         if ($page <= 0) $page = 1;
 
-        $where = [];
         $title = $filter['name'];
         
         $filter_tags = [];
