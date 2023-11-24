@@ -77,7 +77,7 @@ class AdminFilterNotes extends ViewModel
         $page = $this->state('page', 1, 'int', 'get', 'filter_'. $filter_id.'.page');
         if ($page <= 0) $page = 1;
 
-        $title = $filter['name'];
+        $title = 'Filter: '. $filter['name'];
         
         $filter_tags = [];
 
