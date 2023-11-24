@@ -31,19 +31,21 @@ class Menu
                         ];
                 }
 
-                $active_group = false;
+                // $active_group = false;
                 $child_menu = [];
                 foreach($shortcut['childs'] as $item)
                 {
-                    if(trim($path_current, '/') == trim(str_replace($router->url(), '' ,$item['link']), '/'))
-                    {
-                        $active = 'active';
-                        $active_group = true;
-                    }
-                    else
-                    {
-                        $active = '';
-                    }
+                    // Todo: active item menu when open shortcut link
+                    // if(trim($path_current, '/') == trim(str_replace($router->url(), '' ,$item['link']), '/'))
+                    // {
+                    //     $active = 'active';
+                    //     $active_group = true;
+                    // }
+                    // else
+                    // {
+                    //     $active = '';
+                    // }
+                    $active = '';
 
                     $child_menu[] = [
                         'link' => $item['link'], 
