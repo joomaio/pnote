@@ -10,7 +10,6 @@
 									<div class="col mt-0">
 										<h5 class="card-title">My Notes</h5>
 									</div>
-
 									<div class="col-auto">
 										<a data-bs-placement="top" 
 											data-bs-toggle="modal" 

@@ -100,10 +100,13 @@ class ShortcutModel extends Base
                 }
             }
 
-            $shortcuts[] = [
-                'group' => '',
-                'childs' => $tmp,
-            ];
+            if($tmp)
+            {
+                $shortcuts[] = [
+                    'group' => '',
+                    'childs' => $tmp,
+                ];
+            }
 
             foreach($groups as $key => $value)
             {

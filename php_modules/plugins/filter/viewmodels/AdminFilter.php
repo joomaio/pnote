@@ -74,10 +74,14 @@ class AdminFilter extends ViewModel
     public function getFormFields()
     {
         $users = $this->UserEntity->list(0, 0);
+        $groups = $this->UserEntity->list(0, 0);
         $option_user = [[
             'text' => 'Select User',
             'value' => '',
         ]];
+
+        $option_permission = [];
+        
         foreach ($users as $user) 
         {
             $option_user[] = [
@@ -85,6 +89,16 @@ class AdminFilter extends ViewModel
                 'value' => $user['id'],
             ];
         }
+
+        $option_permission[] = [
+            'text' => 'User',
+            'option' => $option_user,
+        ];
+
+        $option_permission[] = [
+            'text' => 'Group',
+            'option' => $option_user,
+        ];
 
         $fields = [
             'tags' => [
@@ -136,9 +150,10 @@ class AdminFilter extends ViewModel
                 'options' => $option_user,
             ],
             'permission' => ['option',
+                'type' => 'optgroup',
                 'formClass' => 'form-select',
                 'default' => 'note',
-                'options' => $option_user,
+                'options' => $option_permission,
             ],
             'select_object' => ['option',
                 'formClass' => 'form-select',
