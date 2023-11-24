@@ -57,10 +57,24 @@ class AdminFilter extends ViewModel
             ],
         ];
 
+        $tags = [];
+        if ($data && $data['tags'])
+        {
+            foreach($data['tags'] as $tag_id)
+            {
+                $tag = $this->TagEntity->findByPK($tag_id);
+                if ($tag)
+                {
+                    $tags[] = $tag;
+                }
+            }
+        }
+
         return [
             'id' => $id,
             'form' => $form,
             'data' => $data,
+            'tags' => $tags,
             'button_header' => $button_header,
             'title_page' => 'My Filter Form',
             'url' => $this->router->url(),

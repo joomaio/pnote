@@ -24,9 +24,12 @@ $this->theme->add($this->url . 'assets/js/select2.full.min.js', '', 'bootstrap-s
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="tags">Tags</label>
                     <div>
+                        <label class="form-label" for="tags">Tags</label>
                         <select class="selectpicker d-block form-select" multiple name="tags[]" id="tags"  >
+                            <?php foreach($this->tags as $tag) : ?>
+                                <option selected value="<?php echo $tag['id'] ?>"><?php echo $tag['name'] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
