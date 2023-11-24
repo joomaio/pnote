@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\pnote\registers;
+namespace App\plugins\filter\registers;
 
 use SPT\Application\IApp;
 
@@ -12,7 +12,7 @@ class Installer
     
     public static function name()
     {
-        return 'Plugin PNote';
+        return 'Plugin note';
     }
 
     public static function detail()
