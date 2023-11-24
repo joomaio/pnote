@@ -21,6 +21,7 @@ class Routing
                     'put' => 'shortcut.shortcut.update',
                     'delete' => 'shortcut.shortcut.delete',
                 ],
+                'parameters' => ['id'],
             ],
         ];
     }

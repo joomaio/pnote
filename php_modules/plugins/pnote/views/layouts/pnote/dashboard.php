@@ -107,13 +107,13 @@
                             <i class="fa-solid fa-plus"></i>
                     </button>
 				</div>
-				<div class="card-body shortcut-list ">
-					<div class="row">
+				<div class="card-body pt-0">
+					<div class="row shortcut-list">
 						<?php foreach($this->shortcuts as $shortcut) : ?>
-							<div class="col-4">
+							<div class="col-4 mb-3">
 								<?php if(isset($shortcut['childs']) && $shortcut['childs']): ?>
 									<div>
-										<h4 class="mb-2"><?php echo $shortcut['group']?></h4>
+										<h4 style="min-height: 21px;" class="mb-3"><?php echo $shortcut['group']?></h4>
 										<table class="table border-top border-1">
 											<tbody>
 												<?php foreach($shortcut['childs'] as $child):?>
@@ -132,11 +132,7 @@
 															>
 																<i class="fa-solid fa-pen-to-square"></i>
 															</a>
-															<a class="fs-4" data-id="<?php echo $child['id'];?>" 
-																data-name="<?php echo $child['name'];?>" 
-																data-link="<?php echo $child['link'];?>"
-																data-group="<?php echo $child['group'];?>"
-															>
+															<a class="fs-4 remove-shortcut" data-id="<?php echo $child['id'];?>" >
 																<i class="fa-solid fa-trash"></i>
 															</a>
 														</td>
@@ -165,11 +161,7 @@
 													>
 														<i class="fa-solid fa-pen-to-square"></i>
 													</a>
-													<a class="fs-4" data-id="<?php echo $shortcut['id'];?>" 
-														data-name="<?php echo $shortcut['name'];?>" 
-														data-link="<?php echo $shortcut['link'];?>"
-														data-group="<?php echo $shortcut['group'];?>"
-													>
+													<a class="fs-4 remove-shortcut" data-id="<?php echo $shortcut['id'];?>" >
 														<i class="fa-solid fa-trash"></i>
 													</a>
 												</td>

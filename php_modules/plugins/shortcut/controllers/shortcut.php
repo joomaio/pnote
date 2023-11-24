@@ -39,16 +39,14 @@ class shortcut extends ControllerMVVM
             }
         }
 
-
-        $this->session->set('flashMsg', $count.' deleted record(s)');
-        return $this->app->redirect(
-            $this->router->url('my-notes'),
-        );
+        $this->app->set('format', 'json');
+        $this->set('status', 'done');
+        $this->set('message', $count.' deleted record(s)');
+        return ;
     }
 
     public function validateID()
     {
-        
         $urlVars = $this->request->get('urlVars');
         $id = $urlVars ? (int) $urlVars['id'] : 0;
 
@@ -91,7 +89,6 @@ class shortcut extends ControllerMVVM
     public function update()
     {
         $id = $this->validateID();
-
         $try = $this->ShortcutModel->update([
             'name' => $this->request->post->get('name_shortcut', '', 'string'),
             'link' => $this->request->post->get('link_shortcut', '', 'string'),

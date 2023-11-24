@@ -15,10 +15,10 @@
                     <div class="mb-2 col-12 mx-auto">
                         <?php $this->ui->field('group_shortcut'); ?>
                     </div>
+                    <input type="hidden" class="_method" value="POST" name="_method">
                 </div>
                 <div class="row g-3 ">
                     <div class="col-12 d-flex justify-content-end mb-4">
-                        <input class="form-control rounded-0 border border-1" id="milestone" type="hidden" name="_method" value="POST">
                         <div class="me-2">
                             <button type="button" class="btn btn-outline-secondary fs-4" data-bs-dismiss="modal">Cancel</button>
                         </div>

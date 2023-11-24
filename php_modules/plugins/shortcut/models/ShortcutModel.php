@@ -79,6 +79,7 @@ class ShortcutModel extends Base
         $groups = [];
         if ($list)
         {
+            $tmp = [];
             foreach($list as $item)
             {
                 $item['link'] = $this->replaceLink($item['link'], false);
@@ -95,9 +96,14 @@ class ShortcutModel extends Base
                 }
                 else
                 {
-                    $shortcuts[] = $item;
+                    $tmp[] = $item;
                 }
             }
+
+            $shortcuts[] = [
+                'group' => '',
+                'childs' => $tmp,
+            ];
 
             foreach($groups as $key => $value)
             {
