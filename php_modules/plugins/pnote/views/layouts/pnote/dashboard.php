@@ -22,7 +22,7 @@
 										</a>
 									</div>
 								</div>
-								<h3 class="mt-1 mb-3">2.382 Notes</h3>
+								<h3 class="mt-1 mb-3"><?php echo $this->countMyNote; ?> Notes</h3>
 							</div>
 						</div>
 					</div>
@@ -40,7 +40,7 @@
 										</div>
 									</div>
 								</div>
-								<h3 class="mt-1 mb-3">$21.300 Filters</h3>
+								<h3 class="mt-1 mb-3"><?php echo $this->countMyFilter; ?> Filters</h3>
 							</div>
 						</div>
 					</div>
@@ -64,7 +64,7 @@
 										</a>
 									</div>
 								</div>
-								<h3 class="mt-1 mb-3">$21.300 Notes</h3>
+								<h3 class="mt-1 mb-3"><?php echo $this->countShare; ?> Notes</h3>
 							</div>
 						</div>
 					</div>
