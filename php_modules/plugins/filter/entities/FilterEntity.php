@@ -88,6 +88,20 @@ class FilterEntity extends Entity
             return false;
         }
 
+        $where = ['name Like "'. $data['name'] .'"'];
+        if(isset($data['id']))
+        {
+            $where[] = 'id <> '. $data['id'];
+        }
+        
+        $findOne = $this->findOne($where);
+
+        if ($findOne)
+        {
+            $this->error = 'Name already used!';
+            return false;
+        }
+
         unset($data['readyUpdate']);
         unset($data['readyNew']);
         return $data;

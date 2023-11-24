@@ -12,6 +12,9 @@ class Routing
             'my-filters' => [
                 'fnc' => [
                     'get' => 'filter.filter.list',
+                    'post' => 'filter.filter.list',
+                    'put' => 'filter.filter.update',
+                    'delete' => 'filter.filter.delete'
                 ],
             ],
             'my-filter/edit' => [

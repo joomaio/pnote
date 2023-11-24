@@ -15,7 +15,7 @@ class FilterModel extends Base
             return false;
         }
 
-        $find = $this->FilterEntitty->findByPK($id);
+        $find = $this->FilterEntity->findByPK($id);
         if (!$find)
         {
             $this->error = 'Invalid Filter';
