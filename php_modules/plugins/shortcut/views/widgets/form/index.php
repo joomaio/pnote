@@ -31,3 +31,4 @@
         </div>
     </div>
 </div>
+<?php echo $this->renderWidget('shortcut::form.javascript'); ?>

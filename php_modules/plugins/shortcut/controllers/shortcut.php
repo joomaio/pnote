@@ -8,9 +8,11 @@ class shortcut extends ControllerMVVM
 {
     public function list()
     {
-        $this->app->set('page', 'backend');
-        $this->app->set('format', 'html');
-        $this->app->set('layout', 'backend.note.list');
+        $list = $this->ShortcutModel->getShortcut();
+
+        $this->app->set('format', 'json');
+        $this->set('list', $list);
+        return ;
     }
 
     public function delete()
@@ -64,32 +66,50 @@ class shortcut extends ControllerMVVM
         return $id;
     }
 
-    public function search()
+    public function add()
     {
-        $search = trim($this->request->get->get('search', '', 'string'));
-        $type = trim($this->request->get->get('type', '', 'string'));
-        $ignore = $this->request->get->get('ignore', '', 'string');
+        $try = $this->ShortcutModel->add([
+            'name' => $this->request->post->get('name', '', 'string'),
+            'link' => $this->request->post->get('link', '', 'string'),
+            'group' => $this->request->post->get('group', '', 'string'),
+            'user_id' => $this->user->get('id'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'created_by' => $this->user->get('id'),
+            'modified_at' => date('Y-m-d H:i:s'),
+            'modified_by' => $this->user->get('id'),
+        ]);
         
-        $list = $this->NoteModel->searchAjax($search, $ignore, $type);
+        $status = $try ? 'done' : 'failed';
+        $msg = $try ? 'Create Done' : 'Error: '. $this->ShortcutModel->getError();
 
         $this->app->set('format', 'json');
-        $this->set('status' , 'success');
-        $this->set('data' , $list);
-        $this->set('message' , '');
-        return;
+        $this->set('status', $status);
+        $this->set('message', $msg);
+        return ;
     }
 
-    public function request()
+    public function update()
     {
-        $urlVars = $this->request->get('urlVars');
-        $id = (int) $urlVars['id'];
-       
-        $list = $this->NoteModel->getRequest($id);
+        $id = $this->validateID();
+
+        $try = $this->ShortcutModel->update([
+            'name' => $this->request->post->get('name', '', 'string'),
+            'link' => $this->request->post->get('link', '', 'string'),
+            'group' => $this->request->post->get('group', '', 'string'),
+            'user_id' => $this->user->get('id'),
+            'id' => $id,
+            'created_at' => date('Y-m-d H:i:s'),
+            'created_by' => $this->user->get('id'),
+            'modified_at' => date('Y-m-d H:i:s'),
+            'modified_by' => $this->user->get('id'),
+        ]);
+        
+        $status = $try ? 'done' : 'failed';
+        $msg = $try ? 'Update Done' : 'Error: '. $this->ShortcutModel->getError();
         
         $this->app->set('format', 'json');
-        $this->set('status' , 'success');
-        $this->set('data' , $list);
-        $this->set('message' , '');
-        return;
+        $this->set('status', $status);
+        $this->set('message', $msg);
+        return ;
     }
 }

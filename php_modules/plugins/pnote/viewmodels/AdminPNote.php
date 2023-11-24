@@ -20,6 +20,8 @@ class AdminPNote extends ViewModel
     {
         return [
             'url' => $this->router->url(),
+            'link_shortcut_form' => $this->router->url('shortcut'),
+            'link_shortcut_list' => $this->router->url('shortcuts'),
         ];
     }
 }

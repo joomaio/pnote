@@ -101,7 +101,8 @@
                             data-bs-toggle="modal" 
                             data-bs-target="#shortcutModel"
                             href="#" 
-                            class="align-middle ms-4 btn border border-1 show_data" 
+                            data-link="<?php echo $this->link_shortcut_form;?>/0"
+                            class="align-middle ms-4 btn border border-1 button-shortcut" 
                             type="button">
                             <i class="fa-solid fa-plus"></i>
                     </button>
@@ -109,6 +110,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 <?php echo $this->renderWidget('shortcut::form');?>
+<?php echo $this->render('pnote.javascript');?>
