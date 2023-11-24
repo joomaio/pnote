@@ -33,21 +33,21 @@ class AdminShortcutWidget extends ViewModel
     public function getFields()
     {
         return [
-            'name' => [
+            'name_shortcut' => [
                 'text',
                 'default' => '',
                 'showLabel' => false,
                 'formClass' => 'form-control',
                 'placeholder' => 'Name'
             ],
-            'link' => [
+            'link_shortcut' => [
                 'text',
                 'default' => '',
                 'showLabel' => false,
                 'formClass' => 'form-control',
                 'placeholder' => 'Link'
             ],
-            'group' => [
+            'group_shortcut' => [
                 'text',
                 'default' => '',
                 'showLabel' => false,

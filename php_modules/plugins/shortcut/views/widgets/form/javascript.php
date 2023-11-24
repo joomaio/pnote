@@ -5,7 +5,16 @@
             url: '<?php echo $this->link_shortcut_list; ?>',
             type: 'GET',
             success: function(result) {
-                console.log(result);
+                var html = '';
+                var list = result.list;
+                if (list)
+                {
+                    list.forEach(function(value, index) {
+                        html = `
+                        `;
+                    });
+                }
+                
             }
         });
     }
@@ -27,6 +36,9 @@
                     } 
                     
                     loadShortcut();
+                    $('#name_shortcut').val('');
+                    $('#link_shortcut').val('');
+                    $('#group_shortcut').val('');
                     $('#shortcutModel').modal('hide');
                 }
             });

@@ -69,9 +69,9 @@ class shortcut extends ControllerMVVM
     public function add()
     {
         $try = $this->ShortcutModel->add([
-            'name' => $this->request->post->get('name', '', 'string'),
-            'link' => $this->request->post->get('link', '', 'string'),
-            'group' => $this->request->post->get('group', '', 'string'),
+            'name' => $this->request->post->get('name_shortcut', '', 'string'),
+            'link' => $this->request->post->get('link_shortcut', '', 'string'),
+            'group' => $this->request->post->get('group_shortcut', '', 'string'),
             'user_id' => $this->user->get('id'),
             'created_at' => date('Y-m-d H:i:s'),
             'created_by' => $this->user->get('id'),
@@ -93,9 +93,9 @@ class shortcut extends ControllerMVVM
         $id = $this->validateID();
 
         $try = $this->ShortcutModel->update([
-            'name' => $this->request->post->get('name', '', 'string'),
-            'link' => $this->request->post->get('link', '', 'string'),
-            'group' => $this->request->post->get('group', '', 'string'),
+            'name' => $this->request->post->get('name_shortcut', '', 'string'),
+            'link' => $this->request->post->get('link_shortcut', '', 'string'),
+            'group' => $this->request->post->get('group_shortcut', '', 'string'),
             'user_id' => $this->user->get('id'),
             'id' => $id,
             'created_at' => date('Y-m-d H:i:s'),

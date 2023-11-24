@@ -18,8 +18,11 @@ class AdminPNote extends ViewModel
 
     public function dashboard()
     {
+        $shortcuts = $this->ShortcutModel->getShortcut();
+        
         return [
             'url' => $this->router->url(),
+            'shortcuts' => $shortcuts,
             'link_shortcut_form' => $this->router->url('shortcut'),
             'link_shortcut_list' => $this->router->url('shortcuts'),
         ];

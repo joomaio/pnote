@@ -76,6 +76,7 @@ class ShortcutModel extends Base
     {
         $list = $this->ShortcutEntity->list(0, 0,['user_id' => $this->user->get('id')]);
         $shortcuts = [];
+        $groups = [];
         if ($list)
         {
             foreach($list as $item)
@@ -83,19 +84,27 @@ class ShortcutModel extends Base
                 $item['link'] = $this->replaceLink($item['link'], false);
                 if ($item['group'])
                 {
-                    if (isset($shortcuts[$item['group']]))
+                    if (isset($groups[$item['group']]))
                     {
-                        $shortcuts[$item['group']][] = $item;
+                        $groups[$item['group']][] = $item;
                     }
                     else
                     {
-                        $shortcuts[$item['group']] = [$item];
+                        $groups[$item['group']] = [$item];
                     }
                 }
                 else
                 {
                     $shortcuts[] = $item;
                 }
+            }
+
+            foreach($groups as $key => $value)
+            {
+                $shortcuts[] = [
+                    'group' => $key,
+                    'childs' => $value
+                ];
             }
         }
 

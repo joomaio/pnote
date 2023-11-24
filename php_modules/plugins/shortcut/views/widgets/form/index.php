@@ -7,13 +7,13 @@
                         <h4>Shortcut</h4>
                     </div>
                     <div class="mb-2 col-12 mx-auto">
-                        <?php $this->ui->field('name'); ?>
+                        <?php $this->ui->field('name_shortcut'); ?>
                     </div>
                     <div class="mb-2 col-12 mx-auto">
-                        <?php $this->ui->field('link'); ?>
+                        <?php $this->ui->field('link_shortcut'); ?>
                     </div>
                     <div class="mb-2 col-12 mx-auto">
-                        <?php $this->ui->field('group'); ?>
+                        <?php $this->ui->field('group_shortcut'); ?>
                     </div>
                 </div>
                 <div class="row g-3 ">

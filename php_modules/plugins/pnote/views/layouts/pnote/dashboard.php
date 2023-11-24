@@ -107,6 +107,80 @@
                             <i class="fa-solid fa-plus"></i>
                     </button>
 				</div>
+				<div class="card-body shortcut-list ">
+					<div class="row">
+						<?php foreach($this->shortcuts as $shortcut) : ?>
+							<div class="col-4">
+								<?php if(isset($shortcut['childs']) && $shortcut['childs']): ?>
+									<div>
+										<h4 class="mb-2"><?php echo $shortcut['group']?></h4>
+										<table class="table border-top border-1">
+											<tbody>
+												<?php foreach($shortcut['childs'] as $child):?>
+													<tr>
+														<td><a href="<?php echo $child['link'] ?>"><?php echo $child['name'] ?></a></td>
+														<td class="action" width="100">
+															<a class="fs-4 me-2 button-shortcut" 
+																data-bs-placement="top" 
+																data-bs-toggle="modal" 
+																data-bs-target="#shortcutModel"
+																data-link="<?php echo $this->link_shortcut_form. '/'. $child['id'];?>"
+																data-id="<?php echo $child['id'];?>" 
+																data-name_shortcut ="<?php echo $child['name'];?>" 
+																data-link_shortcut ="<?php echo $child['link'];?>"
+																data-group_shortcut ="<?php echo $child['group'];?>"
+															>
+																<i class="fa-solid fa-pen-to-square"></i>
+															</a>
+															<a class="fs-4" data-id="<?php echo $child['id'];?>" 
+																data-name="<?php echo $child['name'];?>" 
+																data-link="<?php echo $child['link'];?>"
+																data-group="<?php echo $child['group'];?>"
+															>
+																<i class="fa-solid fa-trash"></i>
+															</a>
+														</td>
+													</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+								<?php else: ?>
+									<table class="table border-top border-1">
+										<tbody>
+											<tr>
+												<td>
+													<a href="<?php echo $shortcut['link']?>"><?php echo $shortcut['name']?></a>
+												</td>
+												<td class="action" width="100">
+													<a class="fs-4 me-2 button-shortcut" 
+														data-bs-placement="top" 
+														data-bs-toggle="modal" 
+														data-bs-target="#shortcutModel"
+														data-link="<?php echo $this->link_shortcut_form. '/'. $shortcut['id'];?>"
+														data-id="<?php echo $shortcut['id'];?>" 
+														data-name_shortcut ="<?php echo $shortcut['name'];?>" 
+														data-link_shortcut ="<?php echo $shortcut['link'];?>"
+														data-group_shortcut ="<?php echo $shortcut['group'];?>"
+													>
+														<i class="fa-solid fa-pen-to-square"></i>
+													</a>
+													<a class="fs-4" data-id="<?php echo $shortcut['id'];?>" 
+														data-name="<?php echo $shortcut['name'];?>" 
+														data-link="<?php echo $shortcut['link'];?>"
+														data-group="<?php echo $shortcut['group'];?>"
+													>
+														<i class="fa-solid fa-trash"></i>
+													</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								<?php endif; ?>
+							</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
