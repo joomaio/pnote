@@ -8,20 +8,14 @@ class ShortcutModel extends Base
 { 
     use ErrorString; 
 
-    public function getTypes()
+    public function replaceLink($link, $encode = true)
     {
-        $noteTypes = $this->app->get('noteTypes', false);
-        if(false === $noteTypes)
-        {
-            $noteTypes = [];
-            $this->app->plgLoad('notetype', 'registerType', function($types) use (&$noteTypes) {
-                $noteTypes += $types;
-            });
-    
-            $this->app->set('noteTypes', $noteTypes);
-        }
+        $replace = $encode ? '_sdm_app_domain_' : $this->router->url();
+        $search = $encode ? $this->router->url() : '_sdm_app_domain_';
+        
+        $link = str_replace($search, $replace, $link);
 
-        return $noteTypes;
+        return $link;
     }
 
     public function remove($id)
@@ -31,33 +25,80 @@ class ShortcutModel extends Base
             return false;
         }
 
-        $try = $this->NoteEntity->remove($id);
+        $try = $this->ShortcutEntity->remove($id);
+        return $try;
+    }
+    
+    public function add($data)
+    {
+        $data['link'] = isset($data['link']) ? $this->replaceLink($data['link']) : '';
+        $data = $this->ShortcutEntity->bind($data);
+
+        if (!$data || !isset($data['readyNew']) || !$data['readyNew'])
+        {
+            $this->error = $this->ShortcutEntity->getError();
+            return false;
+        }
+
+        $newId =  $this->ShortcutEntity->add($data);
+
+        if (!$newId)
+        {
+            $this->error = $this->ShortcutEntity->getError();
+            return false;
+        }
+
+        return $newId;
+    }
+
+    public function update($data)
+    {
+        $data = $this->ShortcutEntity->bind($data);
+        $data['link'] = isset($data['link']) ? $this->replaceLink($data['link']) : '';
+
+        if (!$data || !isset($data['readyUpdate']) || !$data['readyUpdate'])
+        {
+            $this->error = $this->ShortcutEntity->getError();
+            return false;
+        }
+
+        $try = $this->ShortcutEntity->update($data);
+        if (!$try)
+        {
+            $this->error = $this->ShortcutEntity->getError();
+            return false;
+        }
+
         return $try;
     }
 
-    public function searchAjax($search, $ignore, $type)
+    public function getShortcut()
     {
-        $where = [];
-        if ($search)
+        $list = $this->ShortcutEntity->list(0, 0,['user_id' => $this->user->get('id')]);
+        $shortcuts = [];
+        if ($list)
         {
-            $where[] = "(`notice` LIKE '%" . $search . "%')";
-            $where[] = "(`title` LIKE '%" . $search . "%')";
-
-            $where = ['('. implode(" OR ", $where). ')'];
+            foreach($list as $item)
+            {
+                $item['link'] = $this->replaceLink($item['link'], false);
+                if ($item['group'])
+                {
+                    if (isset($shortcuts[$item['group']]))
+                    {
+                        $shortcuts[$item['group']][] = $item;
+                    }
+                    else
+                    {
+                        $shortcuts[$item['group']] = [$item];
+                    }
+                }
+                else
+                {
+                    $shortcuts[] = $item;
+                }
+            }
         }
 
-        if ($type)
-        {
-            $where[] = "(`type` LIKE '" . $type . "')";
-        }
-
-        if ($ignore)
-        {
-            $where[] = 'id NOT IN('.$ignore.')';
-        }
-
-        $result = $this->NoteEntity->list(0, 0, $where, '`title` asc');
-        $result = $result ? $result : [];
-        return $result;
+        return $shortcuts;
     }
 }

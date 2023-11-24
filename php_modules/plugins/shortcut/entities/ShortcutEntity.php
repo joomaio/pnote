@@ -20,33 +20,21 @@ class ShortcutEntity extends Entity
                     'option' => 'unsigned',
                     'extra' => 'auto_increment',
                 ],
-                'public_id' => [
-                    'type' => 'varchar', 
-                    'limit' => 15,
+                'user_id' => [
+                    'type' => 'int', 
+                    'option' => 'unsigned',
                 ],
-                'title' => [
+                'name' => [
                     'type' => 'varchar',
                     'limit' => 245,
                 ], 
-                'alias' => [
+                'group' => [
                     'type' => 'varchar',
                     'limit' => 245,
                 ],
-                'share_user' => [
-                    'type' => 'text',
-                    'null' => 'YES',
-                ],
-                'share_user_group' => [
-                    'type' => 'text',
-                    'null' => 'YES',
-                ],
-                'data' => [
-                    'type' => 'text',
-                    'default' => ''
-                ],
-                'tags' => [
-                    'type' => 'text',
-                    'default' => '',
+                'link' => [
+                    'type' => 'varchar',
+                    'limit' => 245,
                 ],
                 'created_at' => [
                     'type' => 'datetime',
@@ -56,29 +44,13 @@ class ShortcutEntity extends Entity
                     'type' => 'int',
                     'option' => 'unsigned',
                 ],
-                'locked_at' => [
+                'modified_at' => [
                     'type' => 'datetime',
                     'default' => 'NOW()',
                 ],
-                'locked_by' => [
+                'modified_by' => [
                     'type' => 'int',
                     'option' => 'unsigned',
-                ],
-                'notice' => [
-                    'type' => 'text',
-                    'default' => ''
-                ],
-                'note_ids' => [
-                    'type' => 'text',
-                ],
-                'status' => [
-                    'type' => 'int',
-                    'default' => 0,
-                ],
-                'type' => [
-                    'type' => 'varchar',
-                    'limit' => 45,
-                    'default' => 'html',
                 ]
         ];
     }
@@ -91,9 +63,15 @@ class ShortcutEntity extends Entity
             return false;
         }
 
-        if (!isset($data['title']) || !$data['title'] || !$data)
+        if (!isset($data['name']) || !$data['name'] || !$data)
         {
-            $this->error = 'Title is required! ';
+            $this->error = 'Name is required! ';
+            return false;
+        }
+
+        if (!isset($data['link']) || !$data['link'] || !$data)
+        {
+            $this->error = 'Link is required!';
             return false;
         }
 
@@ -107,7 +85,7 @@ class ShortcutEntity extends Entity
         $row = [];
         $data = (array) $data;
         $fields = $this->getFields();
-        $skips = isset($data['id']) && $data['id'] ? ['created_at', 'created_by', 'locked_at', 'locked_by'] : ['id'];
+        $skips = isset($data['id']) && $data['id'] ? ['created_at', 'created_by', 'modified_at', 'modified_by'] : ['id'];
         foreach ($fields as $key => $field)
         {
             if (!in_array($key, $skips))

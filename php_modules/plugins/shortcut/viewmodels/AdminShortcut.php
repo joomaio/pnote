@@ -1,29 +1,19 @@
 <?php
-
-/**
- * SPT software - ViewModel
- * 
- * @project: https://github.com/smpleader/spt
- * @author: Pham Minh - smpleader
- * @description: A simple View Model
- * 
- */
-
 namespace App\plugins\shortcut\viewmodels;
 
 use SPT\Web\Gui\Form;
 use SPT\Web\Gui\Listing;
 use SPT\Web\ViewModel;
 
-class AdminNotes extends ViewModel
+class AdminShortcut extends ViewModel
 {
     public static function register()
     {
         return [
             'layout'=>[
-                'backend.note.list',
-                'backend.note.list.row',
-                'backend.note.list.filter'
+                'backend.shortcut.list',
+                'backend.shortcut.list.row',
+                'backend.shortcut.list.filter'
             ]
         ];
     }
