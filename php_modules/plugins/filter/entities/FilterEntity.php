@@ -28,6 +28,10 @@ class FilterEntity extends Entity
                     'type' => 'varchar',
                     'limit' => 245,
                 ], 
+                'filter_link' => [
+                    'type' => 'varchar',
+                    'limit' => 245,
+                ],
                 'select_object' => [
                     'type' => 'varchar',
                     'limit' => 245,

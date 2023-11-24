@@ -56,11 +56,19 @@ class FilterModel extends Base
 
         return $data;
     }
+
+    public function createSlug($str, $delimiter = '-')
+    {
+        $slug = strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))))), $delimiter));
+        return $slug;
+    }
+
     public function add($data)
     {
-        $data['tags'] = $data['tags'] ? $this->convertArray($data['tags']) : '';;
-        $data['creator'] = $data['creator'] ? $this->convertArray($data['creator']) : '';;
-        $data['permission'] = $data['permission'] ? $this->convertArray($data['permission']) : '';;
+        $data['tags'] = $data['tags'] ? $this->convertArray($data['tags']) : '';
+        $data['filter_link'] = $this->createSlug($data['name']);
+        $data['creator'] = $data['creator'] ? $this->convertArray($data['creator']) : '';
+        $data['permission'] = $data['permission'] ? $this->convertArray($data['permission']) : '';
         $data = $this->FilterEntity->bind($data);
 
         if (!$data || !isset($data['readyNew']) || !$data['readyNew'])
@@ -82,9 +90,10 @@ class FilterModel extends Base
 
     public function update($data)
     {
-        $data['tags'] = $data['tags'] ? $this->convertArray($data['tags']) : '';;
-        $data['creator'] = $data['creator'] ? $this->convertArray($data['creator']) : '';;
-        $data['permission'] = $data['permission'] ? $this->convertArray($data['permission']) : '';;
+        $data['tags'] = $data['tags'] ? $this->convertArray($data['tags']) : '';
+        $data['filter_link'] = $this->createSlug($data['name']);
+        $data['creator'] = $data['creator'] ? $this->convertArray($data['creator']) : '';
+        $data['permission'] = $data['permission'] ? $this->convertArray($data['permission']) : '';
         $data = $this->FilterEntity->bind($data);
 
         if (!$data || !isset($data['readyUpdate']) || !$data['readyUpdate'])
@@ -124,15 +133,15 @@ class FilterModel extends Base
         return $data;
     }
 
-    public function checkFilterName($filter_name)
+    public function checkFilterName($slug)
     {
-        if (!$filter_name)
+        if (!$slug)
         {
             return false;
         }
         
-        $filter_name = strtolower(urldecode($filter_name));
-        $where = ['LOWER(name) LIKE "'.$filter_name.'"'];
+        $slug = strtolower(urldecode($slug));
+        $where = ['LOWER(filter_link) LIKE "'.$slug.'"'];
         $where[] = ['user_id' => $this->user->get('id')];
         $findOne = $this->FilterEntity->findOne($where);
         

@@ -67,6 +67,7 @@ class filter extends ControllerMVVM
 
         if(is_numeric($id) && $id)
         {
+            $save_close = $this->request->post->get('save_close', '', 'string');
             $data = [
                 'id' => $id,
                 'user_id' => $this->user->get('id'),
