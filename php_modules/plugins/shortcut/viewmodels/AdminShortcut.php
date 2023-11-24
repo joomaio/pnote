@@ -14,7 +14,7 @@ class AdminShortcut extends ViewModel
                 'backend.shortcut.list',
                 'backend.shortcut.list.row',
                 'backend.shortcut.list.filter'
-            ]
+            ],
         ];
     }
 
