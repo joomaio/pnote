@@ -75,4 +75,16 @@ class FilterModel extends Base
 
         return $try;
     }
+
+    public function getDetail($id)
+    {
+        if(!$id)
+        {
+            return [];
+        }
+
+        $data = $this->FilterEntity->findByPK($id);
+
+        return $data;
+    }
 }
