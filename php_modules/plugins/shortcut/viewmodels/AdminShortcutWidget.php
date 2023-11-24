@@ -55,7 +55,6 @@ class AdminShortcutWidget extends ViewModel
                 'showLabel' => false,
                 'formClass' => 'form-control',
                 'placeholder' => 'Group',
-                'required' => 'required',
             ],
         ];
     }

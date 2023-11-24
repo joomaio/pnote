@@ -26,6 +26,10 @@ class AdminPNote extends ViewModel
         return [
             'url' => $this->router->url(),
             'shortcuts' => $shortcuts,
+            'link_form_filter' => $this->router->url('my-filter/edit/0'),
+            'link_filter' => $this->router->url('my-filters'),
+            'link_mynote' => $this->router->url('my-notes'),
+            'link_sharenote' => $this->router->url('share-notes'),
             'countShare' => $countShare,
             'countMyNote' => $countMyNote,
             'countMyFilter' => $countMyFilter,

@@ -8,7 +8,9 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col mt-0">
-										<h5 class="card-title">My Notes</h5>
+										<a href="<?php echo $this->link_mynote; ?>">
+											<h5 class="card-title">My Notes</h5>
+										</a>
 									</div>
 									<div class="col-auto">
 										<a data-bs-placement="top" 
@@ -31,13 +33,15 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col mt-0">
-										<h5 class="card-title">My Filters</h5>
+										<a href="<?php echo $this->link_filter;?>">
+											<h5 class="card-title">My Filters</h5>
+										</a>
 									</div>
 
 									<div class="col-auto">
-										<div class="stat text-primary">
-											<i class="align-middle" data-feather="dollar-sign"></i>
-										</div>
+										<a class="stat text-primary" href="<?php echo $this->link_form_filter ?>">
+											<i class="fa-solid fa-plus"></i>
+										</a>
 									</div>
 								</div>
 								<h3 class="mt-1 mb-3"><?php echo $this->countMyFilter; ?> Filters</h3>
@@ -49,7 +53,9 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col mt-0">
-										<h5 class="card-title">My Shares</h5>
+										<a href="<?php echo $this->link_sharenote;?>">
+											<h5 class="card-title">My Shares</h5>
+										</a>
 									</div>
 
 									<div class="col-auto">
