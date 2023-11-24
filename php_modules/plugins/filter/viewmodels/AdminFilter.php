@@ -71,10 +71,10 @@ class AdminFilter extends ViewModel
         
     }
 
-    public function getFormFields()
+    public function getFormFields($data = [])
     {
         $users = $this->UserEntity->list(0, 0);
-        $groups = $this->UserEntity->list(0, 0);
+        $groups = $this->GroupEntity->list(0, 0);
         $option_user = [[
             'text' => 'Select User',
             'value' => '',
@@ -145,6 +145,7 @@ class AdminFilter extends ViewModel
                 'options' => [],
             ],
             'creator' => ['option',
+                'type' => 'multiselect',
                 'formClass' => 'form-select',
                 'default' => 'note',
                 'options' => $option_user,

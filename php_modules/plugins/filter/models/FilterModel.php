@@ -35,8 +35,32 @@ class FilterModel extends Base
         return $try;
     }
     
+    public function convertArray($data, $encode = true)
+    {
+        if ($encode)
+        {
+            if (is_array($data))
+            {
+                $data = implode('),(', $data);
+                $data = $data ? '('. $data .')' : '';
+            }
+        }
+        else
+        {
+            if(is_string($data))
+            {
+                $data = str_replace(['(', ')'], '', $data);
+                $data = explode(',', $data);
+            }
+        }
+
+        return $data;
+    }
     public function add($data)
     {
+        $data['tags'] = $data['tags'] ? $this->convertArray($data['tags']) : '';;
+        $data['creator'] = $data['creator'] ? $this->convertArray($data['creator']) : '';;
+        $data['permission'] = $data['permission'] ? $this->convertArray($data['permission']) : '';;
         $data = $this->FilterEntity->bind($data);
 
         if (!$data || !isset($data['readyNew']) || !$data['readyNew'])
@@ -58,7 +82,10 @@ class FilterModel extends Base
 
     public function update($data)
     {
-        $data['link'] = isset($data['link']) ? $this->replaceLink($data['link']) : '';
+        $data['tags'] = $data['tags'] ? $this->convertArray($data['tags']) : '';;
+        $data['creator'] = $data['creator'] ? $this->convertArray($data['creator']) : '';;
+        $data['permission'] = $data['permission'] ? $this->convertArray($data['permission']) : '';;
+        $data = $this->FilterEntity->bind($data);
 
         if (!$data || !isset($data['readyUpdate']) || !$data['readyUpdate'])
         {
@@ -84,6 +111,15 @@ class FilterModel extends Base
         }
 
         $data = $this->FilterEntity->findByPK($id);
+        if ($data)
+        {
+            $data['start_date'] = $data['start_date'] ? date('Y-m-d', strtotime($data['start_date'])) : '';
+            $data['end_date'] = $data['end_date'] ? date('Y-m-d', strtotime($data['end_date'])) : '';
+        }
+
+        $data['tags'] = $data['tags'] ? $this->convertArray($data['tags'], false) : [];
+        $data['creator'] = $data['creator'] ? $this->convertArray($data['creator'], false) : [];
+        $data['permission'] = $data['permission'] ? $this->convertArray($data['permission'], false) : [];
 
         return $data;
     }

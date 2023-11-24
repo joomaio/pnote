@@ -35,10 +35,12 @@ class FilterEntity extends Entity
                 'start_date' => [
                     'type' => 'datetime',
                     'default' => 'NOW()',
+                    'null' => 'YES'
                 ],
                 'end_date' => [
                     'type' => 'datetime',
                     'default' => 'NOW()',
+                    'null' => 'YES'
                 ],
                 'tags' => [
                     'type' => 'text',
@@ -103,6 +105,10 @@ class FilterEntity extends Entity
             {
                 $default = isset($field['default']) ? $field['default'] : '';
                 $row[$key] = isset($data[$key]) ? $data[$key] : $default;
+            }
+            if ($key == 'start_date' || $key == 'end_date')
+            {
+                $row[$key] =  $row[$key] ?  $row[$key]  : null;
             }
         }
 
