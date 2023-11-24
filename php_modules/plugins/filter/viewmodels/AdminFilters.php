@@ -69,6 +69,7 @@ class AdminFilters extends ViewModel
             'link_list' =>  $this->router->url('my-filters'),
             'title_page' => 'My Filters',
             'link_form' => $this->router->url('my-filter/edit'),
+            'link_view' => $this->router->url('my-filter'),
             'token' => $this->token->value(),
         ];
     }

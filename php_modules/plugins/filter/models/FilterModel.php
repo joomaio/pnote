@@ -123,4 +123,24 @@ class FilterModel extends Base
 
         return $data;
     }
+
+    public function checkFilterName($filter_name)
+    {
+        if (!$filter_name)
+        {
+            return false;
+        }
+        
+        $filter_name = strtolower(urldecode($filter_name));
+        $where = ['LOWER(name) LIKE "'.$filter_name.'"'];
+        $where[] = ['user_id' => $this->user->get('id')];
+        $findOne = $this->FilterEntity->findOne($where);
+        
+        if($findOne)
+        {
+            return $findOne;
+        }
+
+        return false;
+    }
 }

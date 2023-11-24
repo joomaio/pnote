@@ -159,4 +159,23 @@ class filter extends ControllerMVVM
 
         return $id;
     }
+
+    public function filter()
+    {
+        $urlVars = $this->request->get('urlVars');
+        $filter_name = $urlVars && $urlVars['filter_name'] ? $urlVars['filter_name'] : '';
+
+        $check = $this->FilterModel->checkFilterName($filter_name);
+        
+        if (!$check)
+        {
+            $this->app->raiseError('Invalid request');
+        }
+
+        $this->app->set('filter_id', $check['id']);
+
+        $this->app->set('page', 'backend');
+        $this->app->set('format', 'html');
+        $this->app->set('layout', 'note.list');
+    }
 }

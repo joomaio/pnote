@@ -31,7 +31,7 @@ class Routing
                     'get' => 'filter.filter.filter',
                     'post' => 'filter.filter.filter',
                 ],
-                'parameters' => ['filter-name'],
+                'parameters' => ['filter_name'],
             ],
         ];
     }
