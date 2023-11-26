@@ -69,21 +69,24 @@ class FilterModel extends Base
         $data['filter_link'] = $this->createSlug($data['name']);
         $data['creator'] = $data['creator'] ? $this->convertArray($data['creator']) : '';
         $data['permission'] = $data['permission'] ? $this->convertArray($data['permission']) : '';
-        $data = $this->FilterEntity->bind($data);
+        $filter = $this->FilterEntity->bind($data);
 
-        if (!$data || !isset($data['readyNew']) || !$data['readyNew'])
+        if (!$filter || !isset($filter['readyNew']) || !$filter['readyNew'])
         {
             $this->error = $this->FilterEntity->getError();
             return false;
         }
 
-        $newId =  $this->FilterEntity->add($data);
+        $newId =  $this->FilterEntity->add($filter);
 
         if (!$newId)
         {
             $this->error = $this->FilterEntity->getError();
             return false;
         }
+
+        // create shortcut
+        $this->updateShortcut($data, $newId);
 
         return $newId;
     }
@@ -94,21 +97,23 @@ class FilterModel extends Base
         $data['filter_link'] = $this->createSlug($data['name']);
         $data['creator'] = $data['creator'] ? $this->convertArray($data['creator']) : '';
         $data['permission'] = $data['permission'] ? $this->convertArray($data['permission']) : '';
-        $data = $this->FilterEntity->bind($data);
+        $filter = $this->FilterEntity->bind($data);
 
-        if (!$data || !isset($data['readyUpdate']) || !$data['readyUpdate'])
+        if (!$filter || !isset($filter['readyUpdate']) || !$filter['readyUpdate'])
         {
             $this->error = $this->FilterEntity->getError();
             return false;
         }
 
-        $try = $this->FilterEntity->update($data);
+        $try = $this->FilterEntity->update($filter);
         if (!$try)
         {
             $this->error = $this->FilterEntity->getError();
             return false;
         }
 
+        $shortcut = $this->updateShortcut($data, $data['id']);
+        
         return $try;
     }
 
@@ -129,6 +134,13 @@ class FilterModel extends Base
         $data['tags'] = $data['tags'] ? $this->convertArray($data['tags'], false) : [];
         $data['creator'] = $data['creator'] ? $this->convertArray($data['creator'], false) : [];
         $data['permission'] = $data['permission'] ? $this->convertArray($data['permission'], false) : [];
+
+        if ($data['shortcut_id'])
+        {
+            $shortcut = $this->ShortcutModel->getDetail($data['shortcut_id']);
+            $data['shortcut_name'] = $shortcut ? $shortcut['name'] : '';
+            $data['shortcut_group'] = $shortcut ? $shortcut['group'] : '';
+        }
 
         return $data;
     }
@@ -151,5 +163,70 @@ class FilterModel extends Base
         }
 
         return false;
+    }
+
+    public function updateShortcut($data, $filter_id)
+    {
+        if (!$data || !$filter_id)
+        {
+            return false;
+        }
+
+        $shortcut = false;
+        if ($filter_id)
+        {
+            $filter = $this->getDetail($filter_id);
+            $shortcut = $filter['shortcut_id'] ? $this->ShortcutModel->getDetail($filter['shortcut_id']) : '';
+        }
+
+        if ($data['shortcut_name'] && $shortcut)
+        {
+            $try = $this->ShortcutModel->update([
+                'name' => $data['shortcut_name'],
+                'link' => $this->router->url($data['filter_link']),
+                'group' => $data['shortcut_group'],
+                'user_id' => $this->user->get('id'),
+                'id' => $shortcut['id'],
+                'modified_at' => date('Y-m-d H:i:s'),
+                'modified_by' => $this->user->get('id'),
+            ]);
+
+            return $try;
+        }
+        elseif ($data['shortcut_name'])
+        {
+            $try = $this->ShortcutModel->add([
+                'name' => $data['shortcut_name'],
+                'link' => $this->router->url($data['filter_link']),
+                'group' => $data['shortcut_group'],
+                'user_id' => $this->user->get('id'),
+                'created_at' => date('Y-m-d H:i:s'),
+                'created_by' => $this->user->get('id'),
+                'modified_at' => date('Y-m-d H:i:s'),
+                'modified_by' => $this->user->get('id'),
+            ]);
+
+            if ($try)
+            {
+                $data = $this->FilterEntity->bind($data);
+                $data['shortcut_id'] = $try;
+                $this->FilterEntity->update($data);
+            }
+
+            return $try;
+        }
+        elseif($shortcut)
+        {
+            $try = $this->ShortcutModel->remove($shortcut['id']);
+            if($try)
+            {
+                $data = $this->FilterEntity->bind($data);
+                $data['shortcut_id'] = 0;
+                $this->FilterEntity->update($data);
+            }
+            return $try;
+        }
+
+        return true;
     }
 }

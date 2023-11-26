@@ -71,7 +71,6 @@ class filter extends ControllerMVVM
             $data = [
                 'id' => $id,
                 'user_id' => $this->user->get('id'),
-                'shortcut_id' => 0,
                 'name' => $this->request->post->get('name', '', 'string'),
                 'select_object' => $this->request->post->get('select_object', '', 'string'),
                 'start_date' => $this->request->post->get('start_date', null, 'string'),

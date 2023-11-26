@@ -116,7 +116,7 @@ class FilterEntity extends Entity
         $row = [];
         $data = (array) $data;
         $fields = $this->getFields();
-        $skips = isset($data['id']) && $data['id'] ? ['created_at', 'created_by', 'modified_at', 'modified_by'] : ['id'];
+        $skips = isset($data['id']) && $data['id'] ? ['created_at', 'shortcut_id', 'created_by', 'modified_at', 'modified_by'] : ['id'];
         foreach ($fields as $key => $field)
         {
             if (!in_array($key, $skips))

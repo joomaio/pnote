@@ -119,4 +119,22 @@ class ShortcutModel extends Base
 
         return $shortcuts;
     }
+
+    public function getDetail($id)
+    {
+        if (!$id)
+        {
+            return false;
+        }
+
+        $data = $this->ShortcutEntity->findByPK($id);
+        
+        if ($data)
+        {
+            $data['link'] = $this->replaceLink($data['link'], false);
+            return $data;
+        }
+
+        return false;
+    }
 }

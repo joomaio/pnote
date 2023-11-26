@@ -38,8 +38,10 @@
 							var message = result.message ? result.message : 'Save Failed';
 							alert(result.message);
 						} 
-						
-						loadShortcut();
+						else{
+							loadShortcut();
+							location.reload();
+						}
 					}
 				});
             }

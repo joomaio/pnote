@@ -100,6 +100,7 @@
                     } 
                     
                     loadShortcut();
+                    location.reload();
                     $('#name_shortcut').val('');
                     $('#link_shortcut').val('');
                     $('#group_shortcut').val('');
