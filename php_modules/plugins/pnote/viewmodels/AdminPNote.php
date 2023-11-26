@@ -20,6 +20,7 @@ class AdminPNote extends ViewModel
     {
         $shortcuts = $this->ShortcutModel->getShortcut();
         $countMyNote = $this->PNoteModel->countMyNote();
+        $countMyShared = $this->PNoteModel->countMyShared();
         $countMyFilter = $this->PNoteModel->countMyFilter();
         $countShare = $this->PNoteModel->countShare();
 
@@ -33,6 +34,7 @@ class AdminPNote extends ViewModel
             'link_sharenote' => $this->router->url('my-filter/my-shares'),
             'countShare' => $countShare,
             'countMyNote' => $countMyNote,
+            'countMyShared' => $countMyShared,
             'countMyFilter' => $countMyFilter,
             'link_shortcut_form' => $this->router->url('shortcut'),
             'link_shortcut_list' => $this->router->url('shortcuts'),

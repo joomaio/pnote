@@ -9,7 +9,7 @@ class PNoteModel extends Base
     use ErrorString; 
     public function countMyNote()
     {
-        $list = $this->NoteEntity->list(0,0, ['created_by' => $this->user->get('id'), 'status <> -1']);
+        $list = $this->NoteEntity->list(0,0, ['created_by' => $this->user->get('id'), 'status > -1']);
         return $this->NoteEntity->getListTotal();
     }
 
@@ -19,9 +19,17 @@ class PNoteModel extends Base
         return $this->FilterEntity->getListTotal();
     }
 
+    public function countMyShared()
+    {
+        $where = ['created_by Not LIKE '. $this->user->get('id'), 'status > -1', '(share_user <> "" OR share_user_group <> "")'];
+
+        $list = $this->NoteEntity->list(0,0, $where);
+        return $this->NoteEntity->getListTotal();
+    }
+
     public function countShare()
     {
-        $where = ['created_by Not LIKE '. $this->user->get('id')];
+        $where = ['created_by Not LIKE '. $this->user->get('id'), 'status > -1'];
         $where_permission = [];
         $where_permission[] = "(`share_user` LIKE '%(" . $this->user->get('id') . ")%')";
 

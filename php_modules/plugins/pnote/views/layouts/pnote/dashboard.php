@@ -24,7 +24,7 @@
 										</a>
 									</div>
 								</div>
-								<h3 class="mt-1 mb-3"><?php echo $this->countMyNote; ?> Notes</h3>
+								<h3 class="mt-1 mb-3"><?php echo $this->countMyNote; ?> Notes | <?php echo $this->countMyShared; ?> Shared</h3>
 							</div>
 						</div>
 					</div>
