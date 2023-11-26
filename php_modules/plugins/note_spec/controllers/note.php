@@ -74,7 +74,8 @@ class note extends NoteController
             ]);
 
             $this->session->set('flashMsg', 'Save successfully');
-            $link = $save_close ? 'my-notes' : 'note/edit/'. $id;
+            $link_back_note = $this->session->get('link_back_note', 'my-filter/my-notes');
+            $link = $save_close ? $link_back_note : 'note/edit/'. $id;
 
             return $this->app->redirect(
                 $this->router->url($link)
