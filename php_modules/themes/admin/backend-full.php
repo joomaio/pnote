@@ -14,7 +14,7 @@ $content = $this->render($this->mainLayout);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDM</title>
+    <title>Pnote</title>
     <?php $this->theme->echo('css', $this->url()) ?> 
     <?php $this->theme->echo('topJs', $this->url()) ?>
     <?php $this->theme->echo('inlineCss', $this->url()) ?>

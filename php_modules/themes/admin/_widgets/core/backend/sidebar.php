@@ -11,6 +11,11 @@
             </span>
         </a>
         <ul class="sidebar-nav fs-4">
+            <li class="sidebar-item">
+                <div>
+                    <input type="text" placeholder="Search...">
+                </div>
+            </li>
             <?php
             foreach ($this->menu as $index => $row) {?>
                 <li class="sidebar-item <?php echo isset($row['class']) ? $row['class'] : ''; ?> ">

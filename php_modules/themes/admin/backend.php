@@ -16,7 +16,7 @@ $content = $this->render($this->mainLayout);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SDM</title>
+    <title>PNote</title>
 
     <?php $this->theme->echo('css', $this->url()) ?>
     <?php $this->theme->echo('topJs', $this->url()) ?>
