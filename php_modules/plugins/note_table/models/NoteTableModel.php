@@ -23,17 +23,17 @@ class NoteTableModel extends Base
     {
         $data['data'] = $this->replaceContent($data['data']);
         $data['tags'] = isset($data['tags']) ? $this->TagModel->convert($data['tags']) : '';
-        $convert = isset($data['share_user']) ? $this->ShareUserModel->convert($data['share_user']) : [];
-        $data['share_user'] = isset($convert['users']) ? $convert['users'] : '';
-        $data['share_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
+        $convert = isset($data['assign_user']) ? $this->ShareUserModel->convert($data['assign_user']) : [];
+        $data['assign_user'] = isset($convert['users']) ? $convert['users'] : '';
+        $data['assign_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
         $data = [
             'title' => $data['title'],
             'public_id' => '',
             'alias' => '',
             'data' => $data['data'],
             'tags' => $data['tags'],
-            'share_user' => $data['share_user'],
-            'share_user_group' => $data['share_user_group'],
+            'assign_user' => $data['assign_user'],
+            'assign_user_group' => $data['assign_user_group'],
             'type' => 'table',
             'note_ids' => isset($data['note_ids']) ? $data['note_ids'] : '',
             'notice' => isset($data['notice']) ? $data['notice'] : '',
@@ -67,17 +67,17 @@ class NoteTableModel extends Base
     {
         $data['structure'] = $this->replaceContent($data['structure']);
         $data['tags'] = isset($data['tags']) ? $this->TagModel->convert($data['tags']) : '';
-        $convert = isset($data['share_user']) ? $this->ShareUserModel->convert($data['share_user']) : [];
-        $data['share_user'] = isset($convert['users']) ? $convert['users'] : '';
-        $data['share_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
+        $convert = isset($data['assign_user']) ? $this->ShareUserModel->convert($data['assign_user']) : [];
+        $data['assign_user'] = isset($convert['users']) ? $convert['users'] : '';
+        $data['assign_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
         $structure = isset($data['structure']) ? json_decode($data['structure'], true) : [];
         
         $data = [
             'title' => $data['title'],
             'data' => json_encode($structure),
             'tags' => $data['tags'],
-            'share_user' => $data['share_user'],
-            'share_user_group' => $data['share_user_group'],
+            'assign_user' => $data['assign_user'],
+            'assign_user_group' => $data['assign_user_group'],
             'note_ids' => isset($data['note_ids']) ? $data['note_ids'] : '',
             'type' => 'table',
             'notice' => isset($data['notice']) ? $data['notice'] : '',

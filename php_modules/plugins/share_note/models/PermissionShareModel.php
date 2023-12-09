@@ -7,21 +7,21 @@ class PermissionShareModel extends Base
 {
     private $groups;
 
-    public function checkPermission($share_user_group)
+    public function checkPermission($assign_user_group)
     {
         if (!$this->groups)
         {
             $this->groups = $this->UserEntity->getGroups($this->user->get('id'));
         }
 
-        if(!is_array($share_user_group))
+        if(!is_array($assign_user_group))
         {
-            $share_user_group = $this->ShareGroupModel->convert($share_user_group, false);
+            $assign_user_group = $this->ShareGroupModel->convert($assign_user_group, false);
         }
 
         foreach($this->groups as $group)
         {
-            if(in_array($group['group_id'], $share_user_group))
+            if(in_array($group['group_id'], $assign_user_group))
             {
                 return true;
             }

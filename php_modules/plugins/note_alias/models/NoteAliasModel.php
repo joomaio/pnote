@@ -30,8 +30,8 @@ class NoteAliasModel extends Base
             'alias' => '',
             'data' => $note_id,
             'tags' => '',
-            'share_user' => '',
-            'share_user_group' => '',
+            'assign_user' => '',
+            'assign_user_group' => '',
             'type' => 'alias',
             'notice' => '',
             'status' => -1,
@@ -63,15 +63,15 @@ class NoteAliasModel extends Base
     {
         $data['data'] = $this->replaceContent($data['data']);
         $data['tags'] = isset($data['tags']) ? $this->TagModel->convert($data['tags']) : '';
-        $convert = isset($data['share_user']) ? $this->ShareUserModel->convert($data['share_user']) : [];
-        $data['share_user'] = isset($convert['users']) ? $convert['users'] : '';
-        $data['share_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
+        $convert = isset($data['assign_user']) ? $this->ShareUserModel->convert($data['assign_user']) : [];
+        $data['assign_user'] = isset($convert['users']) ? $convert['users'] : '';
+        $data['assign_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
         $note = [
             'title' => $data['title'],
             'data' => $data['data'],
             'tags' => $data['tags'],
-            'share_user' => $data['share_user'],
-            'share_user_group' => $data['share_user_group'],
+            'assign_user' => $data['assign_user'],
+            'assign_user_group' => $data['assign_user_group'],
             'type' => 'spec',
             'notice' => isset($data['notice']) ? $data['notice'] : '',
             'status' => isset($data['status']) ? $data['status'] : 0,

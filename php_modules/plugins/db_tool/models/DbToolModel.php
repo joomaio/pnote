@@ -155,8 +155,7 @@ class DbToolModel extends Base
             'end_date' => '',
             'tags' => '',
             'creator' => [1],
-            'ignore_creator' => [],
-            'permission' => [],
+            'assignment' => ['user-1'],
             'shortcut_name' => '',
             'shortcut_link' => '',
             'shortcut_group' => '',
@@ -181,8 +180,7 @@ class DbToolModel extends Base
             'end_date' => '',
             'tags' => '',
             'creator' => [],
-            'ignore_creator' => [1],
-            'permission' => [],
+            'assignment' => ['user-1'],
             'shortcut_name' => '',
             'shortcut_link' => '',
             'shortcut_group' => '',
@@ -205,7 +203,7 @@ class DbToolModel extends Base
     {
         $try = $this->ShortcutEntity->add([
             'name' => 'My Notes',
-            'link' => '_sdm_app_domain_my-filter/my-notes',
+            'link' => '_sdm_app_domain_collection/my-notes',
             'group' => '',
             'user_id' => 1,
             'created_at' => date('Y-m-d H:i:s'),
@@ -222,7 +220,7 @@ class DbToolModel extends Base
 
         $try = $this->ShortcutEntity->add([
             'name' => 'My Shares',
-            'link' => '_sdm_app_domain_my-filter/my-shares',
+            'link' => '_sdm_app_domain_collection/my-shares',
             'group' => '',
             'user_id' => 1,
             'created_at' => date('Y-m-d H:i:s'),

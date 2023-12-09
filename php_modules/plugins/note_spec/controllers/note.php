@@ -49,7 +49,7 @@ class note extends NoteController
                 'structure' => $structure ? json_decode($structure, true) : [],
                 'removes' => $removes ? json_decode($removes, true) : [],
                 'tags' => $this->request->post->get('tags', [], 'array'),
-                'share_user' => $this->request->post->get('share_user', [], 'array'),
+                'assign_user' => $this->request->post->get('assign_user', [], 'array'),
                 'notice' => $this->request->post->get('notice', '', 'string'),
                 'id' => $id,
             ];

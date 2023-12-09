@@ -36,27 +36,27 @@ class ShareNote extends ViewModel
     public function share_note($layoutData, $viewData)
     {
         $data = isset($viewData['data']) ? $viewData['data'] : [];
-        $share_user = isset($data['share_user']) ? $data['share_user'] : '';
+        $assign_user = isset($data['assign_user']) ? $data['assign_user'] : '';
 
-        $share_user = $this->ShareUserModel->convert($share_user, false);
-        if (!$share_user)
+        $assign_user = $this->ShareUserModel->convert($assign_user, false);
+        if (!$assign_user)
         {
-            $share_user = [];
+            $assign_user = [];
         }
 
         $users = $this->UserEntity->list(0, 0, []);
         $user_groups = $this->GroupEntity->list(0,0, []);
         
-        $share_user_group = isset($data['share_user_group']) ? $data['share_user_group'] : '';
-        $share_user_group = $this->ShareGroupModel->convert($share_user_group, false);
-        if (!$share_user_group)
+        $assign_user_group = isset($data['assign_user_group']) ? $data['assign_user_group'] : '';
+        $assign_user_group = $this->ShareGroupModel->convert($assign_user_group, false);
+        if (!$assign_user_group)
         {
-            $share_user_group = [];
+            $assign_user_group = [];
         }
 
         return [
-            'share_user' => $share_user,
-            'share_user_group' => $share_user_group,
+            'assign_user' => $assign_user,
+            'assign_user_group' => $assign_user_group,
             'users' => $users,
             'user_groups' => $user_groups,
         ];

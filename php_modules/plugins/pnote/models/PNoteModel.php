@@ -21,7 +21,7 @@ class PNoteModel extends Base
 
     public function countMyShared()
     {
-        $where = ['created_by Not LIKE '. $this->user->get('id'), 'status > -1', '(share_user <> "" OR share_user_group <> "")'];
+        $where = ['created_by Not LIKE '. $this->user->get('id'), 'status > -1', '(assign_user <> "" OR assign_user_group <> "")'];
 
         $list = $this->NoteEntity->list(0,0, $where);
         return $this->NoteEntity->getListTotal();
@@ -31,12 +31,12 @@ class PNoteModel extends Base
     {
         $where = ['created_by Not LIKE '. $this->user->get('id'), 'status > -1'];
         $where_permission = [];
-        $where_permission[] = "(`share_user` LIKE '%(" . $this->user->get('id') . ")%')";
+        $where_permission[] = "(`assign_user` LIKE '%(" . $this->user->get('id') . ")%')";
 
         $groups = $this->UserEntity->getGroups($this->user->get('id'));
         foreach($groups as $group)
         {
-            $where_permission[] = "(`share_user_group` LIKE '%(" . $group['group_id'] . ")%')";
+            $where_permission[] = "(`assign_user_group` LIKE '%(" . $group['group_id'] . ")%')";
         }
 
         $where[] = '('. implode(" OR ", $where_permission) . ')';
