@@ -54,6 +54,30 @@ class ShareNote extends ViewModel
             $assign_user_group = [];
         }
 
+        $filter_name = $this->request->get->get('filter', '');
+        if($filter_name)
+        {
+            $filter = $this->FilterModel->checkFilterName($filter_name);
+            $assignment = $this->FilterModel->convertArray($filter['assignment'], false);
+            $user_tmp = $group_tmp = [];
+            foreach($assignment as $item)
+            {
+                $tmp = explode('-', $item);
+                $id = end($tmp);
+                if(strpos($item, 'user') !== false)
+                {
+                    $user_tmp[] = $id;
+                }
+                else
+                {
+                    $group_tmp[] = $id;
+                }
+            }
+
+            $assign_user = $assign_user ? $assign_user : $user_tmp;
+            $assign_user_group = $assign_user_group ? $assign_user_group : $group_tmp;
+        }
+
         return [
             'assign_user' => $assign_user,
             'assign_user_group' => $assign_user_group,

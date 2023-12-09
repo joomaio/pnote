@@ -57,7 +57,7 @@ class AdminNote extends ViewModel
             'history' => $history,
             'title_page_edit' => $data && $data['title'] ? $data['title'] : 'New Note',
             'url' => $this->router->url(),
-            'link_list' => $this->router->url('my-notes'),
+            'link_list' => $this->router->url($this->session->get('link_back_note', '')),
             'link_history' => $this->router->url('history/note-html'),
             'link_preview' => $data['status'] != '-1' ? $this->router->url('note/preview/'. $id) : '',
             'link_form' => $id ? $this->router->url('note/edit') : $this->router->url('new-note/html'),
