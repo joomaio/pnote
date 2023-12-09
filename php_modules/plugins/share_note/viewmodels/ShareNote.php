@@ -36,7 +36,7 @@ class ShareNote extends ViewModel
     public function share_note($layoutData, $viewData)
     {
         $data = isset($viewData['data']) ? $viewData['data'] : [];
-        $assign_user = isset($data['assign_user']) ? $data['assign_user'] : '';
+        $assign_user = isset($data['assignee']) ? $data['assignee'] : '';
 
         $assign_user = $this->ShareUserModel->convert($assign_user, false);
         if (!$assign_user)

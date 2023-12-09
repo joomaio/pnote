@@ -30,7 +30,7 @@ class NoteAliasModel extends Base
             'alias' => '',
             'data' => $note_id,
             'tags' => '',
-            'assign_user' => '',
+            'assignee' => '',
             'assign_user_group' => '',
             'type' => 'alias',
             'notice' => '',
@@ -63,14 +63,14 @@ class NoteAliasModel extends Base
     {
         $data['data'] = $this->replaceContent($data['data']);
         $data['tags'] = isset($data['tags']) ? $this->TagModel->convert($data['tags']) : '';
-        $convert = isset($data['assign_user']) ? $this->ShareUserModel->convert($data['assign_user']) : [];
-        $data['assign_user'] = isset($convert['users']) ? $convert['users'] : '';
+        $convert = isset($data['assignee']) ? $this->ShareUserModel->convert($data['assignee']) : [];
+        $data['assignee'] = isset($convert['users']) ? $convert['users'] : '';
         $data['assign_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
         $note = [
             'title' => $data['title'],
             'data' => $data['data'],
             'tags' => $data['tags'],
-            'assign_user' => $data['assign_user'],
+            'assignee' => $data['assignee'],
             'assign_user_group' => $data['assign_user_group'],
             'type' => 'spec',
             'notice' => isset($data['notice']) ? $data['notice'] : '',

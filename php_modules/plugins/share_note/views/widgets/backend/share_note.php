@@ -4,7 +4,7 @@ $this->theme->add($this->url . 'assets/js/select2.full.min.js', '', 'bootstrap-s
 ?>
 <div>
     <label class="form-label">Assignee</label>
-    <select name="assign_user[]" class="select-tag" multiple id="assign_user">
+    <select name="assignee[]" class="select-tag" multiple id="assign_user">
         <optgroup label="User">
             <?php foreach($this->users as $user) :?>
             <option value="user_<?php echo $user['id']; ?>" <?php echo in_array($user['id'], $this->assign_user) ? 'selected' : ''; ?>><?php echo $user['name']; ?></option>

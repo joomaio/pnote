@@ -46,8 +46,8 @@ class NoteFileModel extends Base
     public function add($data)
     {
         $data['tags'] = isset($data['tags']) ? $this->TagModel->convert($data['tags']) : '';
-        $convert = isset($data['assign_user']) ? $this->ShareUserModel->convert($data['assign_user']) : [];
-        $data['assign_user'] = isset($convert['users']) ? $convert['users'] : '';
+        $convert = isset($data['assignee']) ? $this->ShareUserModel->convert($data['assignee']) : [];
+        $data['assignee'] = isset($convert['users']) ? $convert['users'] : '';
         $data['assign_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
         $files = [];
 
@@ -88,7 +88,7 @@ class NoteFileModel extends Base
                 'alias' => '',
                 'data' => '',
                 'tags' => $item['tags'],
-                'assign_user' => $item['assign_user'],
+                'assignee' => $item['assignee'],
                 'assign_user_group' => $item['assign_user_group'],
                 'type' => 'upload',
                 'status' => isset($item['status']) ? $item['status'] : 0,
@@ -147,8 +147,8 @@ class NoteFileModel extends Base
     public function update($data)
     {
         $data['tags'] = isset($data['tags']) ? $this->TagModel->convert($data['tags']) : '';
-        $convert = isset($data['assign_user']) ? $this->ShareUserModel->convert($data['assign_user']) : [];
-        $data['assign_user'] = isset($convert['users']) ? $convert['users'] : '';
+        $convert = isset($data['assignee']) ? $this->ShareUserModel->convert($data['assignee']) : [];
+        $data['assignee'] = isset($convert['users']) ? $convert['users'] : '';
         $data['assign_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
         $data = $this->NoteEntity->bind($data);
 
@@ -161,7 +161,7 @@ class NoteFileModel extends Base
         $try = $this->NoteEntity->update([
             'title' => $data['title'],
             'tags' => $data['tags'],
-            'assign_user' => $data['assign_user'],
+            'assignee' => $data['assignee'],
             'assign_user_group' => $data['assign_user_group'],
             'notice' => isset($data['notice']) ? $data['notice'] : '',
             'id' => isset($data['id']) ? $data['id'] : 0,

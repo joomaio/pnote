@@ -31,8 +31,8 @@ class NoteHtmlModel extends Base
     {
         $data['data'] = $this->replaceContent($data['data']);
         $data['tags'] = isset($data['tags']) ? $this->TagModel->convert($data['tags']) : '';
-        $convert = isset($data['assign_user']) ? $this->ShareUserModel->convert($data['assign_user']) : [];
-        $data['assign_user'] = isset($convert['users']) ? $convert['users'] : '';
+        $convert = isset($data['assignee']) ? $this->ShareUserModel->convert($data['assignee']) : [];
+        $data['assignee'] = isset($convert['users']) ? $convert['users'] : '';
         $data['assign_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
         $data = [
             'title' => $data['title'],
@@ -40,7 +40,7 @@ class NoteHtmlModel extends Base
             'alias' => '',
             'data' => $data['data'],
             'tags' => $data['tags'],
-            'assign_user' => $data['assign_user'],
+            'assignee' => $data['assignee'],
             'assign_user_group' => $data['assign_user_group'],
             'type' => 'html',
             'note_ids' => isset($data['note_ids']) ? $data['note_ids'] : '',
@@ -75,15 +75,15 @@ class NoteHtmlModel extends Base
     {
         $data['data'] = $this->replaceContent($data['data']);
         $data['tags'] = isset($data['tags']) ? $this->TagModel->convert($data['tags']) : '';
-        $convert = isset($data['assign_user']) ? $this->ShareUserModel->convert($data['assign_user']) : [];
-        $data['assign_user'] = isset($convert['users']) ? $convert['users'] : '';
+        $convert = isset($data['assignee']) ? $this->ShareUserModel->convert($data['assignee']) : [];
+        $data['assignee'] = isset($convert['users']) ? $convert['users'] : '';
         $data['assign_user_group'] = isset($convert['groups']) ? $convert['groups'] : '';
         
         $data = [
             'title' => $data['title'],
             'data' => $data['data'],
             'tags' => $data['tags'],
-            'assign_user' => $data['assign_user'],
+            'assignee' => $data['assignee'],
             'assign_user_group' => $data['assign_user_group'],
             'note_ids' => isset($data['note_ids']) ? $data['note_ids'] : '',
             'type' => 'html',
