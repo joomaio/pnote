@@ -155,7 +155,7 @@ class DbToolModel extends Base
             'end_date' => '',
             'tags' => '',
             'creator' => [1],
-            'assignment' => ['user-1'],
+            'assignment' => [],
             'shortcut_name' => '',
             'shortcut_link' => '',
             'shortcut_group' => '',
