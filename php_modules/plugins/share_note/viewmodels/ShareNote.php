@@ -47,8 +47,6 @@ class ShareNote extends ViewModel
         $users = $this->UserEntity->list(0, 0, []);
         $user_groups = $this->GroupEntity->list(0,0, []);
         
-
-        $data = isset($viewData['data']) ? $viewData['data'] : [];
         $share_user_group = isset($data['share_user_group']) ? $data['share_user_group'] : '';
         $share_user_group = $this->ShareGroupModel->convert($share_user_group, false);
         if (!$share_user_group)

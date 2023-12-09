@@ -18,6 +18,7 @@ class AdminPNote extends ViewModel
 
     public function dashboard()
     {
+        $this->session->set('link_back_note', '');
         $shortcuts = $this->ShortcutModel->getShortcut();
         $countMyNote = $this->PNoteModel->countMyNote();
         $countMyShared = $this->PNoteModel->countMyShared();
