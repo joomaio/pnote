@@ -29,6 +29,7 @@ class AdminMenu extends ViewModel
     {
         return [
             'menu' => $this->MenuModel->getItems(),
+            'menu_shortcut' => $this->MenuModel->getShortcuts(),
         ];
     }
 }

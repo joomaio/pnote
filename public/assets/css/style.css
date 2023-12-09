@@ -190,3 +190,26 @@ span.select2-container {
     z-index: 0;
     width: auto !important;
 }
+
+.sidebar-link, a.sidebar-link{
+    font-size: 16px;
+}
+
+.sidebar-brand .dropdown-menu li a{
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    display: block;
+    font-weight: 400;
+    padding: 0.625rem 1.625rem;
+    position: relative;
+    text-decoration: none;
+    transition: background .1s ease-in-out;
+}
+
+.sidebar-brand .dropdown-menu li a:hover{
+    background-color: #ebebeb;
+}
+
+.open-dashboard-menu.dropdown-toggle:after{
+    display: none;
+}

@@ -51,4 +51,39 @@ class MenuModel extends Base
 
         return  $menu_sidebar;
     }
+
+    public function getShortcuts()
+    {
+        if ($this->menu) return $this->menu;
+
+        $menu = [];
+        $this->app->plgLoad('menu', 'registerShortcut', function($items) use (&$menu){
+            if (is_array($items) && $items)
+            {
+                $order = 1;
+                if (isset($items['order']))
+                {
+                    $order = $items['order'];
+                    unset($items['order']);
+                }
+                foreach($items as $key => $item)
+                {
+                    $menu[$key][$order] = array_merge($menu[$key][$order] ?? [], $item);
+                }
+                
+            }
+        });
+
+        $menu_type = 'menu';
+        $menu = isset($menu[$menu_type]) ? $menu[$menu_type] : [];
+        ksort($menu);
+
+        $menu_sidebar = [];
+        foreach($menu as $item)
+        {
+            $menu_sidebar = array_merge($menu_sidebar, $item);
+        }
+
+        return  $menu_sidebar;
+    }
 }
