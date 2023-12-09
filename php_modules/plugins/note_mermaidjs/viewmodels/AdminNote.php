@@ -70,7 +70,7 @@ class AdminNote extends ViewModel
 
         $button_header = [
             [
-                'link' =>  $this->router->url(isset($data['id']) ? 'note/edit/'.$data['id'] : 'my-notes'),
+                'link' =>  $this->router->url(isset($data['id']) ? 'note/edit/'.$data['id'] : $this->session->get('link_back_note', 'notes')),
                 'class' => 'btn btn-outline-secondary',
                 'title' => 'Cancel',
             ],
@@ -135,7 +135,7 @@ class AdminNote extends ViewModel
 
         $button_header = [
             [
-                'link' => $this->router->url('my-notes'),
+                'link' => $this->router->url($this->session->get('link_back_note', 'notes')),
                 'class' => 'btn btn-outline-secondary',
                 'title' => 'Cancel',
             ],

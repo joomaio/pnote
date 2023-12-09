@@ -85,7 +85,7 @@ class note extends NoteController
         $this->session->set('flashMsg', 'Invalid Note');
 
         return $this->app->redirect(
-            $this->router->url('my-notes')
+            $this->router->url($this->session->get('link_back_note', 'notes'))
         );
     }
 
@@ -115,7 +115,7 @@ class note extends NoteController
 
         $this->session->set('flashMsg', $count.' deleted record(s)');
         return $this->app->redirect(
-            $this->router->url('my-notes'),
+            $this->router->url($this->session->get('link_back_note', 'notes')),
         );
     }
 
@@ -132,7 +132,7 @@ class note extends NoteController
 
             $this->session->set('flashMsg', 'Invalid note');
             return $this->app->redirect(
-                $this->router->url('my-notes'),
+                $this->router->url($this->session->get('link_back_note', 'notes')),
             );
         }
 

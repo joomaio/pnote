@@ -98,7 +98,7 @@ class AdminNote extends ViewModel
         
         $button_header = [
             [
-                'link' => $this->router->url('my-notes'),
+                'link' => $this->router->url($this->session->get('link_back_note', 'notes')),
                 'class' => 'btn btn-outline-secondary',
                 'title' => 'Cancel',
             ],

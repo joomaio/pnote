@@ -67,7 +67,7 @@ class note extends NoteController
         }
 
         $this->session->set('flashMsg', 'Create Successfully'); 
-        $link = $save_close ? $this->router->url('my-notes') : $this->router->url('note/edit/'. $newId);
+        $link = $save_close ? $this->router->url($this->session->get('link_back_note', 'notes')) : $this->router->url('note/edit/'. $newId);
         return $this->app->redirect(
             $link
         );
@@ -103,7 +103,7 @@ class note extends NoteController
                 
             }
             $this->session->set('flashMsg', 'Updated successfully');
-            $link = $save_close ? 'my-notes' : 'note/edit/'. $id;
+            $link = $save_close ? $this->session->get('link_back_note', 'notes') : 'note/edit/'. $id;
 
             return $this->app->redirect(
                 $this->router->url($link)
@@ -113,7 +113,7 @@ class note extends NoteController
         $this->session->set('flashMsg', 'Invalid Note');
 
         return $this->app->redirect(
-            $this->router->url('my-notes')
+            $this->router->url($this->session->get('link_back_note', 'notes'))
         );
     }
 
@@ -144,7 +144,7 @@ class note extends NoteController
 
         $this->session->set('flashMsg', $count.' deleted record(s)');
         return $this->app->redirect(
-            $this->router->url('my-notes'),
+            $this->router->url($this->session->get('link_back_note', 'notes')),
         );
     }
 
@@ -161,7 +161,7 @@ class note extends NoteController
 
             $this->session->set('flashMsg', 'Invalid note');
             return $this->app->redirect(
-                $this->router->url('my-notes'),
+                $this->router->url($this->session->get('link_back_note', 'notes')),
             );
         }
 
