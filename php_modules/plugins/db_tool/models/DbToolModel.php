@@ -97,8 +97,8 @@ class DbToolModel extends Base
         }
 
         // Create filter my notes and my shares
-        $this->createFilter();
         $this->createShortcut();
+        $this->createFilter();
 
         return true;
     }
@@ -148,7 +148,7 @@ class DbToolModel extends Base
     {
         $try = $this->FilterModel->add([
             'user_id' => 1,
-            'shortcut_id' => 0,
+            'shortcut_id' => 1,
             'name' => 'My Notes',
             'select_object' => 'note',
             'start_date' => '',
@@ -164,7 +164,7 @@ class DbToolModel extends Base
             'created_by' => 1,
             'modified_at' => date('Y-m-d H:i:s'),
             'modified_by' => 1,
-        ]); 
+        ], false); 
 
         if (!$try)
         {
@@ -174,7 +174,7 @@ class DbToolModel extends Base
 
         $try = $this->FilterModel->add([
             'user_id' => 1,
-            'shortcut_id' => 0,
+            'shortcut_id' => 2,
             'name' => 'My Shares',
             'select_object' => 'note',
             'start_date' => '',
@@ -190,7 +190,7 @@ class DbToolModel extends Base
             'created_by' => 1,
             'modified_at' => date('Y-m-d H:i:s'),
             'modified_by' => 1,
-        ]); 
+        ], false); 
 
         if (!$try)
         {
