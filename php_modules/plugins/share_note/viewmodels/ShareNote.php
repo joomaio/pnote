@@ -57,8 +57,8 @@ class ShareNote extends ViewModel
         $filter_name = $this->request->get->get('filter', '');
         if($filter_name)
         {
-            $filter = $this->FilterModel->checkFilterName($filter_name);
-            $assignment = $this->FilterModel->convertArray($filter['assignment'], false);
+            $filter = $this->CollectionModel->checkFilterName($filter_name);
+            $assignment = $this->CollectionModel->convertArray($filter['assignment'], false);
             $user_tmp = $group_tmp = [];
             foreach($assignment as $item)
             {

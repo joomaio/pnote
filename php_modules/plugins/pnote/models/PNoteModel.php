@@ -15,8 +15,8 @@ class PNoteModel extends Base
 
     public function countMyFilter()
     {
-        $list = $this->FilterEntity->list(0, 0, ['user_id' => $this->user->get('id')]);
-        return $this->FilterEntity->getListTotal();
+        $list = $this->CollectionEntity->list(0, 0, ['user_id' => $this->user->get('id')]);
+        return $this->CollectionEntity->getListTotal();
     }
 
     public function countMyShared()

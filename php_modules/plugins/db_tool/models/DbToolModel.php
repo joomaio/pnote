@@ -146,7 +146,7 @@ class DbToolModel extends Base
 
     public function createFilter()
     {
-        $try = $this->FilterModel->add([
+        $try = $this->CollectionModel->add([
             'user_id' => 1,
             'shortcut_id' => 1,
             'name' => 'My Notes',
@@ -171,7 +171,7 @@ class DbToolModel extends Base
             return false;
         }
 
-        $try = $this->FilterModel->add([
+        $try = $this->CollectionModel->add([
             'user_id' => 1,
             'shortcut_id' => 2,
             'name' => 'My Shares',
