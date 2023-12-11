@@ -19,7 +19,7 @@ class TableWidget extends ViewModel
     public function preview($layoutData, $viewData)
     {
         $id = isset($viewData['currentId']) ? $viewData['currentId'] : 0;
-        $data = $this->NoteHtmlModel->getDetail($id);
+        $data = $this->NoteTableModel->getDetail($id);
         
         return [
             'data' => $data,
