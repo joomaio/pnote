@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\note_upload\registers;
+namespace App\plugins\pnote\note_upload\registers;
 
 use SPT\Application\IApp;
 use SPT\File;

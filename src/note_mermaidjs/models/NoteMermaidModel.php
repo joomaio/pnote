@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\note_mermaidjs\models;
+namespace App\plugins\pnote\note_mermaidjs\models;
 
 use SPT\Container\Client as Base;
 

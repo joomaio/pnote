@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\share_note\models;
+namespace App\plugins\pnote\share_note\models;
 
 use SPT\Container\Client as Base;
 

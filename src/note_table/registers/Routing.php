@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\note_table\registers;
+namespace App\plugins\pnote\note_table\registers;
 
 use SPT\Application\IApp;
 

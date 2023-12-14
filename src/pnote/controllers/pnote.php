@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\pnote\controllers;
+namespace App\plugins\pnote\pnote\controllers;
 
 use SPT\Response;
 use SPT\Web\ControllerMVVM;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\note_mermaidjs\registers;
+namespace App\plugins\pnote\note_mermaidjs\registers;
 
 use SPT\Application\IApp;
 
@@ -10,7 +10,7 @@ class Notetype
     {
         return [
             'mermaidjs' => [
-                'namespace' => 'App\plugins\note_mermaidjs\\',
+                'namespace' => 'App\plugins\pnote\note_mermaidjs\\',
                 'title' => 'Mermaid Js'
             ]
         ];

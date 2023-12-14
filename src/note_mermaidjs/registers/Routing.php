@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\note_mermaidjs\registers;
+namespace App\plugins\pnote\note_mermaidjs\registers;
 
 use SPT\Application\IApp;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\note_table\viewmodels;
+namespace App\plugins\pnote\note_table\viewmodels;
 
 use SPT\Web\ViewModel;
 use SPT\Web\Gui\Form;

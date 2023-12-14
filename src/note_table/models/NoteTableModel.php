@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\note_table\models;
+namespace App\plugins\pnote\note_table\models;
 
 use SPT\Container\Client as Base;
 

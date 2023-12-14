@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\note_table\controllers;
+namespace App\plugins\pnote\note_table\controllers;
 
 use SPT\Response;
 use DTM\note\libraries\NoteController;

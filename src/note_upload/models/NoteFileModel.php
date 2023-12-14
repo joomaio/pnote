@@ -8,7 +8,7 @@
  * 
  */
 
-namespace App\plugins\note_upload\models;
+namespace App\plugins\pnote\note_upload\models;
 
 use SPT\Container\Client as Base;
 
