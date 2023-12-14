@@ -8,7 +8,7 @@
  * 
  */
 
-namespace App\plugins\note_html\models;
+namespace App\plugins\pnote\note_html\models;
 
 use SPT\Container\Client as Base;
 
