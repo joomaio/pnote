@@ -8,7 +8,7 @@
  * 
  */
 
-namespace App\plugins\menu\models;
+namespace App\plugins\pnote\menu\models;
 
 use SPT\Container\Client as Base;
 
