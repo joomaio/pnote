@@ -8,7 +8,7 @@
  *
  */
 
-namespace App\plugins\note_attachment\controllers;
+namespace App\plugins\pnote\note_attachment\controllers;
 
 use SPT\Response;
 use DTM\note\libraries\NoteController;

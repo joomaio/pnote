@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\note_attachment\registers;
+namespace App\plugins\pnote\note_attachment\registers;
 
 use SPT\Application\IApp; 
 use SPT\File;
@@ -19,7 +19,7 @@ class Dispatcher
         $cName = $app->get('controller');
         $fName = $app->get('function');
         
-        $controller = 'App\plugins\note_attachment\controllers\\'. $cName;
+        $controller = 'App\plugins\pnote\note_attachment\controllers\\'. $cName;
         if(!class_exists($controller))
         {
             $app->raiseError('Invalid controller '. $cName);
