@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\note_alias\registers;
+namespace App\plugins\pnote\note_alias\registers;
 
 use SPT\Application\IApp;
 use SPT\Response;
@@ -16,7 +16,7 @@ class Dispatcher
 
         $app->set('theme', $app->cf('adminTheme'));
 
-        $controller = 'App\plugins\note_alias\controllers\\'. $cName;
+        $controller = 'App\plugins\pnote\note_alias\controllers\\'. $cName;
         if(!class_exists($controller))
         {
             $app->raiseError('Invalid controller '. $cName);
