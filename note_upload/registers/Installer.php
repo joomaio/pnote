@@ -30,6 +30,14 @@ class Installer
         return '0.0.1';
     }
 
+    public static function asset()
+    {
+        // DB Entity
+        return [
+            'mermaidjs' => 'assets/mermaidjs',
+        ];
+    }
+
     public static function install( IApp $app)
     {
         // DB Entity
