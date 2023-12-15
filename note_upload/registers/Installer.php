@@ -35,7 +35,9 @@ class Installer
         // DB Entity
         $container = $app->getContainer();
         $FileEntity = new FileEntity($container->get('query'));
-        $TreeNoteEntity->checkAvailability();
+        $try = $FileEntity->checkAvailability();
+        
+        return true;
     }
     public static function uninstall( IApp $app)
     {
