@@ -10,7 +10,7 @@
 
 namespace App\plugins\pnote\note_attachment\models;
 
-use App\plugins\note_upload\models\NoteFileModel;
+use App\plugins\pnote\note_upload\models\NoteFileModel;
 
 class NoteAttachmentModel extends NoteFileModel
 { 
