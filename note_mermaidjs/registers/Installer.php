@@ -1,8 +1,7 @@
 <?php
-namespace App\plugins\pnote\note_upload\registers;
+namespace App\plugins\pnote\note_mermaidjs\registers;
 
 use SPT\Application\IApp;
-use App\plugins\pnote\note_upload\entities\FileEntity;
 
 class Installer
 {
@@ -30,13 +29,16 @@ class Installer
         return '0.0.1';
     }
 
-    public static function install( IApp $app)
+    public static function assets()
     {
         // DB Entity
-        $container = $app->getContainer();
-        $FileEntity = new FileEntity($container->get('query'));
-        $try = $FileEntity->checkAvailability();
-        
+        return [
+            'mermaidjs' => 'assets/mermaidjs',
+        ];
+    }
+    
+    public static function install( IApp $app)
+    {
         return true;
     }
     public static function uninstall( IApp $app)
