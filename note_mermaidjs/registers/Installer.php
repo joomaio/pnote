@@ -31,12 +31,11 @@ class Installer
 
     public static function assets()
     {
-        // DB Entity
         return [
             'mermaidjs' => 'assets/mermaidjs',
         ];
     }
-    
+
     public static function install( IApp $app)
     {
         return true;
