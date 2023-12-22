@@ -39,16 +39,31 @@ class Installer
 
     public static function install( IApp $app)
     {
-        // DB Entity
         $container = $app->getContainer();
-        $TreeNoteEntity = new TreeNoteEntity($container->get('query'));
-        $try = $TreeNoteEntity->checkAvailability();
+        Loader::findClass( 
+            SPT_PLUGIN_PATH. 'pnote/note_spec/entities', 
+            'App\plugins\pnote\note_spec\entities', 
+            function($classname, $fullname) use (&$container)
+            {
+                $x = new $fullname($container->get('query'));
+                $x->checkAvailability();
+            });
 
         return true;
     }
     public static function uninstall( IApp $app)
     {
-        // run sth to uninstall
+        $container = $app->getContainer();
+        Loader::findClass( 
+            SPT_PLUGIN_PATH. 'pnote/note_spec/entities', 
+            'App\plugins\pnote\note_spec\entities', 
+            function($classname, $fullname) use (&$container)
+            {
+                $x = new $fullname($container->get('query'));
+                $x->dropTable();
+            });
+
+        return true;
     }
     public static function active( IApp $app)
     {

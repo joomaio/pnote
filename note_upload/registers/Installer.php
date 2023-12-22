@@ -32,16 +32,31 @@ class Installer
 
     public static function install( IApp $app)
     {
-        // DB Entity
         $container = $app->getContainer();
-        $FileEntity = new FileEntity($container->get('query'));
-        $try = $FileEntity->checkAvailability();
-        
+        Loader::findClass( 
+            SPT_PLUGIN_PATH. 'pnote/note_upload/entities', 
+            'App\plugins\pnote\note_upload\entities', 
+            function($classname, $fullname) use (&$container)
+            {
+                $x = new $fullname($container->get('query'));
+                $x->checkAvailability();
+            });
+
         return true;
     }
     public static function uninstall( IApp $app)
     {
-        // run sth to uninstall
+        $container = $app->getContainer();
+        Loader::findClass( 
+            SPT_PLUGIN_PATH. 'pnote/note_upload/entities', 
+            'App\plugins\pnote\note_upload\entities', 
+            function($classname, $fullname) use (&$container)
+            {
+                $x = new $fullname($container->get('query'));
+                $x->dropTable();
+            });
+
+        return true;
     }
     public static function active( IApp $app)
     {
