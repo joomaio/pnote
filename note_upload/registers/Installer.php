@@ -3,6 +3,7 @@ namespace App\plugins\pnote\note_upload\registers;
 
 use SPT\Application\IApp;
 use App\plugins\pnote\note_upload\entities\FileEntity;
+use SPT\Support\Loader;
 
 class Installer
 {

@@ -3,6 +3,7 @@ namespace App\plugins\pnote\note_spec\registers;
 
 use SPT\Application\IApp;
 use App\plugins\pnote\note_spec\entities\TreeNoteEntity;
+use SPT\Support\Loader;
 
 class Installer
 {
