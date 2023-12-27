@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\pnote\note_spec\controllers;
+namespace App\pnote\note_spec\controllers;
 
 use SPT\Web\ControllerMVVM;
 

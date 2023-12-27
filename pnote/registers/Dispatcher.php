@@ -1,8 +1,8 @@
 <?php
-namespace App\plugins\pnote\pnote\registers;
+namespace App\pnote\pnote\registers;
 
 use SPT\Application\IApp;
-use App\plugins\pnote\pnote\libraries\NoteDispatch;
+use App\pnote\pnote\libraries\NoteDispatch;
 
 class Dispatcher
 {
@@ -14,7 +14,7 @@ class Dispatcher
         $fName = $app->get('function');
         // prepare note
 
-        $controller = 'App\plugins\pnote\pnote\controllers\\'. $cName;
+        $controller = 'App\pnote\pnote\controllers\\'. $cName;
         if(!class_exists($controller))
         {
             $app->raiseError('Invalid controller '. $cName);

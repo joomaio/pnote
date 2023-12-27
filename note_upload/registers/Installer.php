@@ -1,8 +1,8 @@
 <?php
-namespace App\plugins\pnote\note_upload\registers;
+namespace App\pnote\note_upload\registers;
 
 use SPT\Application\IApp;
-use App\plugins\pnote\note_upload\entities\FileEntity;
+use App\pnote\note_upload\entities\FileEntity;
 use SPT\Support\Loader;
 
 class Installer
@@ -36,7 +36,7 @@ class Installer
         $container = $app->getContainer();
         Loader::findClass( 
             SPT_PLUGIN_PATH. 'pnote/note_upload/entities', 
-            'App\plugins\pnote\note_upload\entities', 
+            'App\pnote\note_upload\entities', 
             function($classname, $fullname) use (&$container)
             {
                 $x = new $fullname($container->get('query'));
@@ -50,7 +50,7 @@ class Installer
         $container = $app->getContainer();
         Loader::findClass( 
             SPT_PLUGIN_PATH. 'pnote/note_upload/entities', 
-            'App\plugins\pnote\note_upload\entities', 
+            'App\pnote\note_upload\entities', 
             function($classname, $fullname) use (&$container)
             {
                 $x = new $fullname($container->get('query'));

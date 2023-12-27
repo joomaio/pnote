@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\pnote\note_table\controllers;
+namespace App\pnote\note_table\controllers;
 
 use SPT\Web\ControllerMVVM;
 

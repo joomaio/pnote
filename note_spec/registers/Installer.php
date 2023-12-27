@@ -1,8 +1,8 @@
 <?php
-namespace App\plugins\pnote\note_spec\registers;
+namespace App\pnote\note_spec\registers;
 
 use SPT\Application\IApp;
-use App\plugins\pnote\note_spec\entities\TreeNoteEntity;
+use App\pnote\note_spec\entities\TreeNoteEntity;
 use SPT\Support\Loader;
 
 class Installer
@@ -43,7 +43,7 @@ class Installer
         $container = $app->getContainer();
         Loader::findClass( 
             SPT_PLUGIN_PATH. 'pnote/note_spec/entities', 
-            'App\plugins\pnote\note_spec\entities', 
+            'App\pnote\note_spec\entities', 
             function($classname, $fullname) use (&$container)
             {
                 $x = new $fullname($container->get('query'));
@@ -57,7 +57,7 @@ class Installer
         $container = $app->getContainer();
         Loader::findClass( 
             SPT_PLUGIN_PATH. 'pnote/note_spec/entities', 
-            'App\plugins\pnote\note_spec\entities', 
+            'App\pnote\note_spec\entities', 
             function($classname, $fullname) use (&$container)
             {
                 $x = new $fullname($container->get('query'));

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\pnote\note_attachment\registers;
+namespace App\pnote\note_attachment\registers;
 
 use SPT\Application\IApp;
 

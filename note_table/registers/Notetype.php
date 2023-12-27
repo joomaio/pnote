@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\pnote\note_table\registers;
+namespace App\pnote\note_table\registers;
 
 use SPT\Application\IApp;
 
@@ -10,7 +10,7 @@ class Notetype
     {
         return [
             'table' => [
-                'namespace' => 'App\plugins\pnote\note_table\\',
+                'namespace' => 'App\pnote\note_table\\',
                 'title' => 'Table'
             ]
         ];

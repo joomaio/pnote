@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\pnote\note_spec\viewmodels;
+namespace App\pnote\note_spec\viewmodels;
 
 use SPT\Web\ViewModel;
 use SPT\Web\Gui\Form;

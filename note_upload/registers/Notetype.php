@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\pnote\note_upload\registers;
+namespace App\pnote\note_upload\registers;
 
 use SPT\Application\IApp;
 
@@ -10,7 +10,7 @@ class Notetype
     {
         return [
             'upload' => [
-                'namespace' => 'App\plugins\pnote\note_upload\\',
+                'namespace' => 'App\pnote\note_upload\\',
                 'model' => 'NoteFileModel',
                 'title' => 'Upload'
             ]

@@ -8,7 +8,7 @@
  * 
  */
 
-namespace App\plugins\pnote\note_upload\entities;
+namespace App\pnote\note_upload\entities;
 
 use SPT\Storage\DB\Entity;
 

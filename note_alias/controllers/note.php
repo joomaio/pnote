@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\pnote\note_alias\controllers;
+namespace App\pnote\note_alias\controllers;
 
 use SPT\Response;
 use DTM\note\libraries\NoteController;

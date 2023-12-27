@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\pnote\share_note\registers;
+namespace App\pnote\share_note\registers;
 
 use SPT\Application\IApp;
 

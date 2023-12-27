@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\pnote\note_mermaidjs\viewmodels;
+namespace App\pnote\note_mermaidjs\viewmodels;
 
 use SPT\Web\ViewModel;
 use SPT\Web\Gui\Form;

@@ -8,7 +8,7 @@
  *
  */
 
-namespace App\plugins\pnote\share_note\controllers;
+namespace App\pnote\share_note\controllers;
 
 use SPT\Web\ControllerMVVM;
 

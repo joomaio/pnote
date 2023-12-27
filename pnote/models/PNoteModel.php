@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\pnote\pnote\models;
+namespace App\pnote\pnote\models;
 
 use SPT\Container\Client as Base;
 use SPT\Traits\ErrorString;

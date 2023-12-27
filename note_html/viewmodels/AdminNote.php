@@ -9,7 +9,7 @@
  * 
  */
 
-namespace App\plugins\pnote\note_html\viewmodels;
+namespace App\pnote\note_html\viewmodels;
 
 use SPT\Web\ViewModel;
 use SPT\Web\Gui\Form;

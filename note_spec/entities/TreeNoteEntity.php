@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\pnote\note_spec\entities;
+namespace App\pnote\note_spec\entities;
 
 use SPT\Storage\DB\Entity;
 

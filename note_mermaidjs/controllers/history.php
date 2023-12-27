@@ -1,5 +1,5 @@
 <?php
-namespace App\plugins\pnote\note_mermaidjs\controllers;
+namespace App\pnote\note_mermaidjs\controllers;
 
 use SPT\Response;
 use DTM\note\libraries\NoteController;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\plugins\pnote\share_note\registers;
+namespace App\pnote\share_note\registers;
 
 class Routing
 {
