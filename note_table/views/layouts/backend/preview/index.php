@@ -5,8 +5,8 @@
 <div class="container-fluid align-items-center row justify-content-center mx-auto pt-3">
     <div class="row justify-content-center">
         <div class="col-lg-12 col-sm-12">
-            <input id="table_data" type="hidden" name="table_data" value='<?php echo json_encode($this->data['products']); ?>'>
-            <div id="preview-table"></div>
+            <textarea style="height:0px;visibility:hidden;" id="data-table-<?php echo $this->data['id']; ?>"><?php echo json_encode($this->data['products']); ?></textarea>
+            <div id="preview-table-<?php echo $this->data['id']; ?>"></div>
         </div>
     </div>
 </div>

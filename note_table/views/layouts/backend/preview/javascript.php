@@ -1,8 +1,9 @@
 <script>
     $(document).ready(function(e) {
-        var data =  JSON.parse($('#table_data').val());
+        var tableId = '<?php echo $this->data['id']; ?>';
+        var data = JSON.parse($(`#data-table-${tableId}`).html());
 
-        const container = document.querySelector('#preview-table');
+        const container = document.querySelector(`#preview-table-${tableId}`);
         var myHeaders = data ? data['colHeaders'] : [''];
         var tableData = data ? data['data'] : [['']];
 
@@ -27,6 +28,7 @@
 
         function htmlRenderer(instance, td, row, col, prop, value, cellProperties) {
             Handsontable.renderers.HtmlRenderer.apply(this, arguments);
+            
             td.innerHTML = value;
         }
     });
