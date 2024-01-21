@@ -1,5 +1,10 @@
 
 <?php echo $this->renderWidget('core::notification'); ?>
+<style>
+    .select2-container--default .select2-selection--multiple {
+        background-color: transparent !important;
+    }
+</style>
 <div class="container-fluid align-items-center row justify-content-center mx-auto pt-3">
     <form enctype="multipart/form-data" action="<?php echo $this->link_form . '/' . $this->id ?>" method="post" id="form_submit">
         <div class="row justify-content-center">
