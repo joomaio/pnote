@@ -44,27 +44,36 @@ class ShareNote extends ViewModel
             $assign_user = [];
         }
 
-        $group_ids = $this->UserGroupEntity->list(0,0,['user_id = ' . $this->user->get('id')]);
-        $group_id_arr = '(';
-        foreach ($group_ids as $idx => $group) {
-            if ($idx != 0) {
-                $group_id_arr .= ',';
-            }
-            $group_id_arr .= $group['group_id'];
-        }
-        $group_id_arr .= ')';
-        $user_groups = $this->GroupEntity->list(0,0, ['id IN ' . $group_id_arr]);
+        $user_access = $this->PermissionModel->getAccessByUser();
 
-        $user_ids = $group_ids = $this->UserGroupEntity->list(0,0,['group_id IN ' . $group_id_arr]);
-        $user_id_arr = '(';
-        foreach ($user_ids as $idx => $user) {
-            if ($idx != 0) {
-                $user_id_arr .= ',';
+        if (in_array('user_manager', $user_access)) {
+            $users = $this->UserEntity->list(0, 0, []);
+            $user_groups = $this->GroupEntity->list(0,0, []);
+        } else {
+            $group_ids = $this->UserGroupEntity->list(0,0,['user_id = ' . $this->user->get('id')]);
+            $group_id_arr = '(';
+            foreach ($group_ids as $idx => $group) {
+                if ($idx != 0) {
+                    $group_id_arr .= ',';
+                }
+                $group_id_arr .= $group['group_id'];
             }
-            $user_id_arr .= $user['user_id'];
+            $group_id_arr .= ')';
+            $user_groups = $this->GroupEntity->list(0,0, ['id IN ' . $group_id_arr]);
+
+            $user_ids = $group_ids = $this->UserGroupEntity->list(0,0,['group_id IN ' . $group_id_arr]);
+            $user_id_arr = '(';
+            if (is_array($user_ids)) {
+                foreach ($user_ids as $idx => $user) {
+                    if ($idx != 0) {
+                        $user_id_arr .= ',';
+                    }
+                    $user_id_arr .= $user['user_id'];
+                }
+            }
+            $user_id_arr .= ')';
+            $users = $this->UserEntity->list(0, 0, ['id IN ' . $user_id_arr]);
         }
-        $user_id_arr .= ')';
-        $users = $this->UserEntity->list(0, 0, ['id IN ' . $user_id_arr]);
 
         $assign_user_group = isset($data['assign_user_group']) ? $data['assign_user_group'] : '';
         $assign_user_group = $this->ShareGroupModel->convert($assign_user_group, false);
