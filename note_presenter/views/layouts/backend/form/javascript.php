@@ -36,19 +36,15 @@
             $('#form_submit').submit();
         });
 
-        $('#addImageModal').on('show.bs.modal', function () {
-            $(".select2-hidden-accessible").prop("disabled", true);
-        });
+        // $('#addImageModal').on('show.bs.modal', function () {
+        //     $(".select2-hidden-accessible").prop("disabled", true);
+        // });
 
-        $('#addImageModal').on('hidden.bs.modal', function () {
-            $(".select2-hidden-accessible").prop("disabled", false);
-        });
+        // $('#addImageModal').on('hidden.bs.modal', function () {
+        //     $(".select2-hidden-accessible").prop("disabled", false);
+        // });
 
         $(".select2-selection--multiple").on('click', function () {
-            $('#addImageModal').modal('hide');
-        });
-
-        $(".selection").on('click', function () {
             $('#addImageModal').modal('hide');
         });
     });
