@@ -187,8 +187,139 @@ class PNoteModel extends Base
             }
         }
 
+        // Create filter my notes and my shares
+        $shortcut = $this->createShortcut($created_user);
+        if (!$shortcut['success'])
+        {
+            $result['message'] = $shortcut['message'];
+            return $result;
+        }
+
+        $filter = $this->createFilter($created_user, $shortcut['my_notes_id'], $shortcut['my_shares_id']);
+        if (!$filter['success'])
+        {
+            $result['message'] = $filter['message'];
+            return $result;
+        }
+
         $result['success'] = true;
         $result['message'] = 'Create Super User Successfully';
+        return $result;
+    }
+
+    public function createFilter($user_id, $my_notes_id, $my_shares_id)
+    {
+        $result = array(
+            'success' => false,
+            'message' => '',
+        );
+
+        $try = $this->CollectionEntity->add([
+            'user_id' => $user_id,
+            'shortcut_id' => $my_notes_id,
+            'name' => 'My Notes',
+            'select_object' => 'note',
+            'start_date' => '',
+            'end_date' => '',
+            'tags' => '',
+            'filters' => [],
+            'shares' => [],
+            'creator' => [1],
+            'assignment' => [],
+            'shortcut_name' => '',
+            'shortcut_link' => '',
+            'shortcut_group' => '',
+            'created_at' => date('Y-m-d H:i:s'),
+            'created_by' => $user_id,
+            'modified_at' => date('Y-m-d H:i:s'),
+            'modified_by' => $user_id,
+        ]);
+
+        if ($try)
+        {
+            $result['message'] = 'Create Filter My Notes Failed';
+            return $result;
+        }
+
+        $try = $this->CollectionEntity->add([
+            'user_id' => $user_id,
+            'shortcut_id' => $my_shares_id,
+            'name' => 'My Shares',
+            'select_object' => 'note',
+            'start_date' => '',
+            'end_date' => '',
+            'tags' => '',
+            'creator' => [],
+            'filters' => [],
+            'shares' => [],
+            'assignment' => ['user-1'],
+            'shortcut_name' => '',
+            'shortcut_link' => '',
+            'shortcut_group' => '',
+            'created_at' => date('Y-m-d H:i:s'),
+            'created_by' => $user_id,
+            'modified_at' => date('Y-m-d H:i:s'),
+            'modified_by' => $user_id,
+        ]); 
+
+        if ($try)
+        {
+            $result['message'] = 'Create Filter My Shares Failed';
+            return $result;
+        }
+
+        $result['message'] = 'Create Filters Successfully';
+        $result['success'] = true;
+        return $result;
+    }
+
+    public function createShortcut($user_id)
+    {
+        $result = array(
+            'success' => false,
+            'message' => '',
+            'my_notes_id' => 0,
+            'my_shares_id' => 0
+        );
+
+        $my_notes_id = $this->ShortcutEntity->add([
+            'name' => 'My Notes',
+            'link' => '_sdm_app_domain_collection/my-notes',
+            'group' => '',
+            'user_id' => $user_id,
+            'created_at' => date('Y-m-d H:i:s'),
+            'created_by' => $user_id,
+            'modified_at' => date('Y-m-d H:i:s'),
+            'modified_by' => $user_id,
+        ]); 
+
+        if (!$my_notes_id)
+        {
+            $result['message'] = 'Create Filter My Notes Failed';
+            return $result;
+        }
+
+        $my_shares_id = $this->ShortcutEntity->add([
+            'name' => 'My Shares',
+            'link' => '_sdm_app_domain_collection/my-shares',
+            'group' => '',
+            'user_id' => $user_id,
+            'created_at' => date('Y-m-d H:i:s'),
+            'created_by' => $user_id,
+            'modified_at' => date('Y-m-d H:i:s'),
+            'modified_by' => $user_id,
+        ]); 
+
+        if (!$my_shares_id)
+        {
+            $result['message'] = 'Create Filter My Shares Failed';
+            return $result;
+        }
+
+        $result['message'] = 'Create Filters Successfully';
+        $result['success'] = true;
+        $result['my_notes_id'] = $my_notes_id;
+        $result['my_shares_id'] = $my_shares_id;
         return $result;
     }
 }
