@@ -214,7 +214,7 @@ class PNoteModel extends Base
             'message' => '',
         );
 
-        $try = $this->CollectionEntity->add([
+        $try = $this->CollectionModel->add([
             'user_id' => $user_id,
             'shortcut_id' => $my_notes_id,
             'name' => 'My Notes',
@@ -233,15 +233,15 @@ class PNoteModel extends Base
             'created_by' => $user_id,
             'modified_at' => date('Y-m-d H:i:s'),
             'modified_by' => $user_id,
-        ]);
+        ], false);
 
-        if ($try)
+        if (!$try)
         {
             $result['message'] = 'Create Filter My Notes Failed';
             return $result;
         }
 
-        $try = $this->CollectionEntity->add([
+        $try = $this->CollectionModel->add([
             'user_id' => $user_id,
             'shortcut_id' => $my_shares_id,
             'name' => 'My Shares',
@@ -260,9 +260,9 @@ class PNoteModel extends Base
             'created_by' => $user_id,
             'modified_at' => date('Y-m-d H:i:s'),
             'modified_by' => $user_id,
-        ]); 
+        ], false); 
 
-        if ($try)
+        if (!$try)
         {
             $result['message'] = 'Create Filter My Shares Failed';
             return $result;
