@@ -1,5 +1,3 @@
-<button class="btn btn-primary" id="create-user-button" data-bs-toggle="modal" data-bs-target="#createSuperUser" style="margin-right: 3px;">Create User</button>
-<!-- Modal -->
 <div class="modal fade" id="createSuperUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="text-align: left;">
     <div class="modal-dialog modal-dialog-centered " style="max-width: 600px;">
         <div class="modal-content container px-3">

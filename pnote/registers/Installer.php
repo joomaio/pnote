@@ -29,7 +29,7 @@ class Installer
         return '0.0.1';
     }
 
-    public static function createSuperUser(IApp $app)
+    public static function registerButton(IApp $app)
     {
         $container = $app->getContainer();
         $container->get('PermissionModel');
@@ -43,15 +43,16 @@ class Installer
             }
         }
 
-        if (count($super_user_groups) == 0) {
-
-        }
-
         $super_users = $container->get('UserGroupEntity')->list(0, 0, ['group_id IN (' . implode(',', $super_user_groups) . ')']);
 
         if (count($super_user_groups) == 0 || count($super_users) == 0) {
             return [
-                'widget' => 'pnote::createSuperUser'
+                'button-name' => 'Create User',
+                'button-class' => 'btn btn-primary',
+                'button-id' => 'create-user-button',
+                'button-style' => 'margin-right: 3px;',
+                'button-modal-info' => 'data-bs-toggle="modal" data-bs-target="#createSuperUser"',
+                'modal-widget' => 'pnote::createSuperUser'
             ];
         }
 
