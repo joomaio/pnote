@@ -29,11 +29,34 @@ class Installer
         return '0.0.1';
     }
 
-    public static function createSuperUser()
+    public static function createSuperUser(IApp $app)
     {
-        return [
-            'widget' => 'pnote::createSuperUser'
-        ];
+        $container = $app->getContainer();
+        $container->get('PermissionModel');
+        $super_user_groups = [];
+        $user_groups = $container->get('GroupEntity')->list(0, 0, []);
+        foreach($user_groups as $group)
+        {
+            if (str_contains($group['access'], 'user_manager'))
+            {
+                $super_user_groups[] = $group['id'];
+            }
+        }
+
+        if (count($super_user_groups) == 0) {
+
+        }
+
+        $super_users = $container->get('UserGroupEntity')->list(0, 0, ['group_id IN (' . implode(',', $super_user_groups) . ')']);
+
+        if (count($super_user_groups) == 0 || count($super_users) == 0) {
+            return [
+                'widget' => 'pnote::createSuperUser'
+            ];
+        }
+
+        return false;
+        
     }
 
     public static function install( IApp $app)
