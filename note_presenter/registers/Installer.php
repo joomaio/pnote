@@ -1,5 +1,5 @@
 <?php
-namespace App\pnote\note_mermaidjs\registers;
+namespace App\pnote\note_presenter\registers;
 
 use SPT\Application\IApp;
 
@@ -11,15 +11,15 @@ class Installer
             'tags' => ['pnote'],
             'type' => 'plugin',
             'solution' => 'pnote',
-            'folder_name' => 'note_mermaidjs',
-            'name' => 'Plugin note mermaidjs',
+            'folder_name' => 'note_presenter',
+            'name' => 'Plugin note presenter',
             'require' => []
         ];
     }
     
     public static function name()
     {
-        return 'Plugin note mermaidjs';
+        return 'Plugin note presenter';
     }
 
     public static function detail()
@@ -27,20 +27,13 @@ class Installer
         return [
             'author' => 'Pham Minh',
             'created_at' => '2023-01-03',
-            'description' => 'Plugin note mermaidjs'
+            'description' => 'Plugin note presenter'
         ];
     }
 
     public static function version()
     {
         return '0.0.1';
-    }
-
-    public static function assets()
-    {
-        return [
-            'mermaidjs' => 'assets/mermaidjs',
-        ];
     }
 
     public static function install( IApp $app)

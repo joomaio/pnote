@@ -1,5 +1,5 @@
 <?php
-namespace App\pnote\note_table\registers;
+namespace App\pnote\share_note\registers;
 
 use SPT\Application\IApp;
 
@@ -8,18 +8,17 @@ class Installer
     public static function info()
     {
         return [
-            'tags' => ['pnote'],
-            'type' => 'plugin',
+            'type' => 'solution',
             'solution' => 'pnote',
-            'folder_name' => 'note_table',
-            'name' => 'Plugin note table',
+            'folder_name' => 'pnote',
+            'name' => 'Solution Pnote',
             'require' => []
         ];
     }
     
     public static function name()
     {
-        return 'Plugin note table';
+        return 'Solution Pnote';
     }
 
     public static function detail()
@@ -27,7 +26,7 @@ class Installer
         return [
             'author' => 'Pham Minh',
             'created_at' => '2023-01-03',
-            'description' => 'Plugin note table'
+            'description' => 'Solution Pnote'
         ];
     }
 
@@ -36,16 +35,9 @@ class Installer
         return '0.0.1';
     }
 
-    public static function assets()
-    {
-        return [
-            'handsontable' => 'assets/handsontable',
-        ];
-    }
-
     public static function install( IApp $app)
     {
-        return true;
+        // run sth to prepare the install
     }
     public static function uninstall( IApp $app)
     {

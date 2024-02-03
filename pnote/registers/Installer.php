@@ -7,7 +7,14 @@ class Installer
 {
     public static function info()
     {
-        return ['tags'=>['sdm']];
+        return [
+            'tags'=>['sdm'],
+            'type' => 'plugin',
+            'solution' => 'pnote',
+            'folder_name' => 'pnote',
+            'name' => 'Plugin pnote',
+            'require' => []
+        ];
     }
     
     public static function name()
