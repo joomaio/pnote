@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<information>
+	<tag>pnote</tag>
+	<type>plugin</type>
+	<solution>pnote</solution>
+	<folder_name>note_presenter</folder_name>
+	<name>Plugin note presenter</name>
+	<require></require>
+</information>
+			

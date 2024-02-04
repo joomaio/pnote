@@ -67,6 +67,11 @@ class Installer
         
     }
 
+    public static function createSuperUser()
+    {
+        return true;
+    }
+
     public static function install( IApp $app)
     {
         // run sth to prepare the install
