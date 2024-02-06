@@ -67,10 +67,12 @@ class Installer
         
     }
 
-    public static function createSuperUser(IApp $app)
+    public static function afterInstall(IApp $app, $is_cli)
     {
-        $container = $app->getContainer();
-        $super_user_groups = [];
+        if ($is_cli)
+        {
+            $container = $app->getContainer();
+            $super_user_groups = [];
             $user_groups = $container->get('GroupEntity')->list(0, 0, []);
             foreach ($user_groups as $group) {
                 if (str_contains($group['access'], 'user_manager')) {
@@ -156,6 +158,8 @@ class Installer
                 }
 
             }
+        }
+        
         return true;
     }
 
