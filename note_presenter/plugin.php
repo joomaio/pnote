@@ -5,5 +5,5 @@ return [
     'solution' => 'pnote',
     'folder_name' => 'note_presenter',
     'name' => 'Plugin note presenter',
-    'required' => []
+    'dependencies' => []
 ];

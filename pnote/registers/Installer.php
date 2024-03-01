@@ -13,7 +13,7 @@ class Installer
             'solution' => 'pnote',
             'folder_name' => 'pnote',
             'name' => 'Plugin pnote',
-            'require' => []
+            'dependencies' => []
         ];
     }
     

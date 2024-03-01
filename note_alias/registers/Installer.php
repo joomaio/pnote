@@ -13,7 +13,7 @@ class Installer
             'solution' => 'pnote',
             'folder_name' => 'note_alias',
             'name' => 'Plugin note alias',
-            'require' => []
+            'dependencies' => []
         ];
     }
     

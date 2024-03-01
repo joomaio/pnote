@@ -5,5 +5,5 @@ return [
     'solution' => 'pnote',
     'folder_name' => 'note_mermaidjs',
     'name' => 'Plugin note mermaidjs',
-    'required' => []
+    'dependencies' => []
 ];

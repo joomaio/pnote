@@ -5,5 +5,5 @@ return [
     'solution' => 'pnote',
     'folder_name' => 'pnote',
     'name' => 'Solution PNote',
-    'required' => []
+    'dependencies' => []
 ];

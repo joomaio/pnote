@@ -13,7 +13,7 @@ class Installer
             'solution' => 'pnote',
             'folder_name' => 'share_note',
             'name' => 'Plugin share note',
-            'require' => []
+            'dependencies' => []
         ];
     }
     
