@@ -231,6 +231,7 @@ class NoteFileModel extends Base
             if ($file)
             {
                 $this->FileEntity->remove($file['id']);
+                $this->NoteEntity->remove($id);
             }
     
             // remove file

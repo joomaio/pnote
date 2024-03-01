@@ -15,7 +15,7 @@
             <div class="col-lg-8 col-sm-12">
                 <input id="input_title" type="hidden" name="title">
                 <input id="_method" type="hidden" name="_method" value="<?php echo $this->id ? 'PUT' : 'POST' ?>">
-                <input id="table_data" type="hidden" name="table_data" value='<?php echo (array_key_exists('products', $this->data) ? json_encode($this->data['products']) : ''); ?>'>
+                <textarea style="height:0px;visibility:hidden;" id="table_data" type="hidden" name="table_data"><?php echo (array_key_exists('products', $this->data) ? json_encode($this->data['products']) : ''); ?></textarea>
                 <div id="note-table"></div>
                 <input id="save_close" type="hidden" name="save_close">
             </div>

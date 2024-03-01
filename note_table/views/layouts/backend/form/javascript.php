@@ -155,7 +155,14 @@
 
         function htmlRenderer(instance, td, row, col, prop, value, cellProperties) {
             Handsontable.renderers.HtmlRenderer.apply(this, arguments);
-            td.innerHTML = value;
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = value;
+
+            var scriptTags = tempDiv.getElementsByTagName('script');
+            for (var i = scriptTags.length - 1; i >= 0; i--) {
+                scriptTags[i].parentNode.removeChild(scriptTags[i]);
+            }
+            td.innerHTML = tempDiv.innerHTML;
         }
 
         table.addHook('afterCreateCol', function(col, amount) {

@@ -63,7 +63,7 @@ class ajax extends NoteController
         $urlVars = $this->request->get('urlVars');
         $id = isset($urlVars['id']) ? $urlVars['id'] : 0;
 
-        $try = $this->NoteAttachmentModel->remove($id);
+        $try = $this->NoteAttachmentModel->remove($id, true);
         $status = $try ? 'done' : 'failed';
         $msg = $try ? 'Remove Done' : 'Error: '. $this->NoteAttachmentModel->getError();
         

@@ -7,12 +7,19 @@ class Installer
 {
     public static function info()
     {
-        return ['share_note'=>['sdm']];
+        return [
+            'tags'=>['sdm'],
+            'type' => 'plugin',
+            'solution' => 'pnote',
+            'folder_name' => 'share_note',
+            'name' => 'Plugin share note',
+            'require' => []
+        ];
     }
     
     public static function name()
     {
-        return 'Plugin Note';
+        return 'Plugin Share Note';
     }
 
     public static function detail()

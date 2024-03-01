@@ -1,8 +1,8 @@
 <div class="container-fluid align-items-center row justify-content-center mx-auto pt-3">
     <div class="row justify-content-center">
         <div class="col-lg-12 col-sm-12">
-            <input id="table_data" type="hidden" name="table_data" value='<?php echo json_encode($this->data['data']); ?>'>
-            <div id="preview-table"></div>
+            <textarea style="height:0px;visibility:hidden;" id="data-table-<?php echo $this->data['id']; ?>"><?php echo json_encode($this->data['products']); ?></textarea>
+            <div id="preview-table-<?php echo $this->data['id']; ?>"></div>
         </div>
     </div>
 </div>
@@ -12,9 +12,10 @@
 ?>
 <script>
     $(document).ready(function(e) {
-        var data = JSON.parse(JSON.parse($('#table_data').val()));
+        var tableId = '<?php echo $this->data['id']; ?>';
+        var data = JSON.parse($(`#data-table-${tableId}`).html());
 
-        const container = document.querySelector('#preview-table');
+        const container = document.querySelector(`#preview-table-${tableId}`);
 
         let myHeaders = data ? data['colHeaders'] : [''];
         let tableData = data ? data['data'] : [['']];
@@ -38,9 +39,22 @@
             licenseKey: 'non-commercial-and-evaluation'
         });
 
+        function decodeHtmlEntities(encodedString) {
+            var elem = document.createElement('textarea');
+            elem.innerHTML = encodedString;
+            return elem.value;
+        }
+
         function htmlRenderer(instance, td, row, col, prop, value, cellProperties) {
             Handsontable.renderers.HtmlRenderer.apply(this, arguments);
-            td.innerHTML = value;
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = decodeHtmlEntities(value);
+
+            var scriptTags = tempDiv.getElementsByTagName('script');
+            for (var i = scriptTags.length - 1; i >= 0; i--) {
+                scriptTags[i].parentNode.removeChild(scriptTags[i]);
+            }
+            td.innerHTML = tempDiv.innerHTML;
         }
     });
 </script>
