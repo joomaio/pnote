@@ -54,6 +54,7 @@ class Installer
 
         if (count($super_user_groups) == 0 || count($super_users) == 0) {
             return [
+                'solution' => 'pnote',
                 'button-name' => 'Create User',
                 'button-class' => 'btn btn-primary',
                 'button-id' => 'create-user-button',
