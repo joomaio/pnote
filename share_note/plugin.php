@@ -3,7 +3,7 @@ return [
     'tags' => ['pnote'],
     'type' => 'plugin',
     'solution' => 'pnote',
-    'folder_name' => 'pnote',
-    'name' => 'Plugin pnote',
-    'required' => []
+    'folder_name' => 'share_note',
+    'name' => 'Plugin share note',
+    'dependencies' => []
 ];

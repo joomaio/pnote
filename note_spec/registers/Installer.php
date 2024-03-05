@@ -15,7 +15,7 @@ class Installer
             'solution' => 'pnote',
             'folder_name' => 'note_spec',
             'name' => 'Plugin note spec',
-            'require' => []
+            'dependencies' => []
         ];
     }
     

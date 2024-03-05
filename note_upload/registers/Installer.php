@@ -15,7 +15,7 @@ class Installer
             'solution' => 'pnote',
             'folder_name' => 'note_upload',
             'name' => 'Plugin note upload',
-            'require' => []
+            'dependencies' => []
         ];
     }
     

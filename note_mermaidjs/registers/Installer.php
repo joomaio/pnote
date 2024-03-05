@@ -13,7 +13,7 @@ class Installer
             'solution' => 'pnote',
             'folder_name' => 'note_mermaidjs',
             'name' => 'Plugin note mermaidjs',
-            'require' => []
+            'dependencies' => []
         ];
     }
     
