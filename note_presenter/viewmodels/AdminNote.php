@@ -110,7 +110,7 @@ class AdminNote extends ViewModel
                 'formClass' => 'form-control',
             ],
             'data' => [
-                'presenter',
+                'layout' => 'note_presenter::fields.presenter',
                 'label' => 'Presenter',
                 'formClass' => 'form-control',
             ],

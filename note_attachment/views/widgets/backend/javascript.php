@@ -71,6 +71,7 @@
     $(document).ready(function() {
         addEvent();
         $('.btn-upload').on('click', function(e) {
+            $('.btn-upload').attr('disabled', 'disabled');
             e.preventDefault();
             var check = $('#file')[0].files.length;
             if (!check) {
@@ -88,6 +89,7 @@
                 contentType: false,
                 data: form,
                 success: function(result) {
+                    $('.btn-upload').removeAttr('disabled');
                     if (result.status != 'done') {
                         var message = result.message ? result.message : 'Upload Failed';
                         alert(result.message);
