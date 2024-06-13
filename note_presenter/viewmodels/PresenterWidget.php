@@ -50,7 +50,7 @@ class PresenterWidget extends ViewModel
     {
         $fields = [
             'data_'. $id => [
-                'presenter',
+                'layout' => 'note_presenter::fields.presenter',
                 'label' => 'Presenter',
                 'formClass' => 'form-control',
             ],
